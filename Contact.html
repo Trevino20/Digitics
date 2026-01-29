@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digitic.AI Waitlist</title>
+    <!-- Load Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Inter font from Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+        /* BEM BLOCK: waitlist-page */
+        .waitlist-page {
+            font-family: 'Inter', sans-serif;
+            background-color: white; /* Pure white background */
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* BEM BLOCK: form-block */
+        .form-block {
+            max-width: 450px;
+            width: 90%;
+            margin: auto;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            position: relative;
+            z-index: 10; /* Ensure form is above illustrations */
+        }
+
+        /* BEM ELEMENT: form-block__input and form-block__textarea */
+        .form-block__input, .form-block__textarea {
+            height: 52px; /* Input height ~45-55px */
+            border-radius: 10px; /* Border-radius 10-12px */
+            transition: all 0.2s;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); /* Soft shadow for inputs */
+        }
+
+        .form-block__textarea {
+            height: 100px;
+            resize: vertical;
+            padding-top: 12px;
+        }
+
+        .form-block__input:focus, .form-block__textarea:focus {
+            outline: none;
+            border-color: #9a16f9; /* Tailwind orange-500 */
+            box-shadow: 0 0 0 2px rgba(207, 22, 249, 0.5);
+        }
+
+        /* BEM ELEMENT: form-block__button */
+        .form-block__button {
+            height: 52px;
+            border-radius: 12px;
+            background-image: linear-gradient(to right, #1f2937, #000000); /* Black to gradient */
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); /* Soft shadow */
+            transition: all 0.2s;
+        }
+
+        .form-block__button:hover {
+            opacity: 0.9;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* BEM ELEMENT: page-header__logo (for light gray text) */
+        .page-header__logo, .page-header__time {
+            color: #d1d5db; /* Light gray */
+            font-weight: 500;
+        }
+
+        /* BEM BLOCK: illustration-hand (Absolute positioning for hands) */
+        .illustration-hand {
+            position: absolute;
+            font-size: 15rem; /* Large size */
+            opacity: 0.25; /* Lightly faded */
+            pointer-events: none; /* Ignore clicks */
+            z-index: 5;
+            display: none; /* Hidden by default on mobile */
+        }
+
+        /* BEM MODIFIER: illustration-hand--left */
+        .illustration-hand--left {
+            top: 20%;
+            left: 5%;
+            transform: rotate(-10deg);
+        }
+
+        /* BEM MODIFIER: illustration-hand--right */
+        .illustration-hand--right {
+            bottom: 10%;
+            right: 5%;
+            transform: scaleX(-1) rotate(-10deg);
+        }
+
+        /* Responsive settings for desktop */
+        @media (min-width: 768px) {
+            .illustration-hand {
+                display: block; /* Show on desktop */
+            }
+        }
+
+        /* BEM BLOCK: modal */
+        .modal {
+            display: none; /* Hidden by default */
+        }
+        .modal.is-open {
+            display: flex;
+        }
+    </style>
+</head>
+<body class="waitlist-page">
+
+    <!-- BEM BLOCK: page-header -->
+    <header class="page-header absolute top-0 left-0 right-0 p-6 flex justify-between">
+        <!-- BEM ELEMENT: page-header__logo -->
+        <div class="page-header__logo text-xl">digitics-ai</div>
+        <!-- BEM ELEMENT: page-header__time -->
+        <div id="page-header__time" class="page-header__time text-xl"></div>
+    </header>
+
+    <!-- BEM BLOCK: illustration-hand (Left Hand) -->
+    <div class="illustration-hand illustration-hand--left hidden md:block" aria-hidden="true">
+        <!-- Using a simple SVG hand for the illustration -->
+        <svg xmlns="http://www.w3.org/2000/sv" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor"><path d="M11 1.95c.57.17 1.15.39 1.63.78c.36.3.61.64.91.97c.48.53 1.05 1.01 1.48 1.62c.26.37.49.75.69 1.14c.2.4.39.81.54 1.23c.3.84.47 1.72.39 2.62c-.08.9-.38 1.75-.89 2.51c-.13.21-.26.43-.39.63c-.13.2-.28.39-.42.57c-.15.19-.31.36-.48.52c-.17.15-.35.3-.53.43c-1.3 1.06-2.92 1.7-4.63 1.84c-1.71.14-3.41-.21-4.88-1.02c-.05-.03-.09-.07-.14-.11c-1.63-1.25-2.61-3.08-2.61-4.93c0-1.85.98-3.68 2.61-4.93c.47-.35 1-.65 1.54-.87c.18-.08.36-.16.54-.22c.18-.07.36-.12.54-.18c.67-.23 1.36-.37 2.06-.41c.67-.04 1.35 0 2.01.12c.33.06.67.12 1.01.21c.28.07.56.16.84.26c.7.27 1.38.61 2.03 1.01c.21.13.43.27.64.41c.21.15.42.3.62.47c1.47 1.31 2.21 3.01 2.21 4.79c0 1.78-.74 3.48-2.21 4.79c-.2.17-.41.32-.62.47c-.21.14-.43.28-.64.41c-.65.4-1.33.74-2.03 1.01c-.28.1-.56.19-.84.26c-.34.09-.68.15-1.01.21c-.66.12-1.34.16-2.01.12c-.7-.04-1.39-.18-2.06-.41c-.18-.06-.36-.11-.54-.18c-.18-.06-.36-.14-.54-.22c-.54-.22-1.07-.52-1.54-.87c-1.63-1.25-2.61-3.08-2.61-4.93c0-1.85.98-3.68 2.61-4.93c.05-.03.09-.07.14-.11c.47-.26.97-.47 1.48-.63c.27-.08.55-.15.83-.21c.28-.06.56-.1.84-.13c.85-.09 1.71-.05 2.53.11c.82.16 1.62.48 2.37.95c.44.27.87.58 1.28.92c.41.35.8.74 1.16 1.15c.37.41.71.85 1.02 1.31c.3.46.59.94.84 1.44c.25.5.46 1.02.63 1.56c.17.54.31 1.09.4 1.65c.09.56.13 1.13.13 1.7c0 .57-.04 1.14-.13 1.7c-.09.56-.23 1.12-.4 1.66c-.17.54-.38 1.06-.63 1.56c-.25.5-.54.98-.84 1.44c-.31.46-.65.9-1.02 1.31c-.36.41-.75.8-1.16 1.15c-.41.34-.84.65-1.28.92c-.75.47-1.55.79-2.37.95c-.82.16-1.68.2-2.53.11c-.28-.03-.56-.07-.84-.13c-.28-.06-.56-.13-.83-.21c-.51-.16-1.01-.37-1.48-.63z"/></svg>
+    </div>
+
+    <!-- BEM BLOCK: illustration-hand (Right Hand) -->
+    <div class="illustration-hand illustration-hand--right hidden md:block" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor"><path d="M11 1.95c.57.17 1.15.39 1.63.78c.36.3.61.64.91.97c.48.53 1.05 1.01 1.48 1.62c.26.37.49.75.69 1.14c.2.4.39.81.54 1.23c.3.84.47 1.72.39 2.62c-.08.9-.38 1.75-.89 2.51c-.13.21-.26.43-.39.63c-.13.2-.28.39-.42.57c-.15.19-.31.36-.48.52c-.17.15-.35.3-.53.43c-1.3 1.06-2.92 1.7-4.63 1.84c-1.71.14-3.41-.21-4.88-1.02c-.05-.03-.09-.07-.14-.11c-1.63-1.25-2.61-3.08-2.61-4.93c0-1.85.98-3.68 2.61-4.93c.47-.35 1-.65 1.54-.87c.18-.08.36-.16.54-.22c.18-.07.36-.12.54-.18c.67-.23 1.36-.37 2.06-.41c.67-.04 1.35 0 2.01.12c.33.06.67.12 1.01.21c.28.07.56.16.84.26c.7.27 1.38.61 2.03 1.01c.21.13.43.27.64.41c.21.15.42.3.62.47c1.47 1.31 2.21 3.01 2.21 4.79c0 1.78-.74 3.48-2.21 4.79c-.2.17-.41.32-.62.47c-.21.14-.43.28-.64.41c-.65.4-1.33.74-2.03 1.01c-.28.1-.56.19-.84.26c-.34.09-.68.15-1.01.21c-.66.12-1.34.16-2.01.12c-.7-.04-1.39-.18-2.06-.41c-.18-.06-.36-.11-.54-.18c-.18-.06-.36-.14-.54-.22c-.54-.22-1.07-.52-1.54-.87c-1.63-1.25-2.61-3.08-2.61-4.93c0-1.85.98-3.68 2.61-4.93c.05-.03.09-.07.14-.11c.47-.26.97-.47 1.48-.63c.27-.08.55-.15.83-.21c.28-.06.56-.1.84-.13c.85-.09 1.71-.05 2.53.11c.82.16 1.62.48 2.37.95c.44.27.87.58 1.28.92c.41.35.8.74 1.16 1.15c.37.41.71.85 1.02 1.31c.3.46.59.94.84 1.44c.25.5.46 1.02.63 1.56c.17.54.31 1.09.4 1.65c.09.56.13 1.13.13 1.7c0 .57-.04 1.14-.13 1.7c-.09.56-.23 1.12-.4 1.66c-.17.54-.38 1.06-.63 1.56c-.25.5-.54.98-.84 1.44c-.31.46-.65.9-1.02 1.31c-.36.41-.75.8-1.16 1.15c-.41.34-.84.65-1.28.92c-.75.47-1.55.79-2.37.95c-.82.16-1.68.2-2.53.11c-.28-.03-.56-.07-.84-.13c-.28-.06-.56-.13-.83-.21c-.51-.16-1.01-.37-1.48-.63z"/></svg>
+    </div>
+
+    <!-- Main Content: Centered Form -->
+    <main class="flex-grow flex items-center justify-center p-4">
+        <!-- BEM BLOCK: form-block -->
+        <form id="waitlist-form" class="form-block bg-white space-y-4" action="https://api.web3forms.com/submit" method="POST" >
+            <!-- BEM ELEMENT: form-block__eta-tag -->
+            <div class="waitlist-form__eta-tag inline-block border border-gray-300 px-3 py-1 text-xs text-gray-500 rounded-full font-medium">
+                ETA: ~2 weeks
+            </div>
+
+            <!-- BEM ELEMENT: form-block__header -->
+            <div class="waitlist-form__header mb-6">
+                <!-- BEM ELEMENT: form-block__title -->
+                <h2 class="text-4xl font-extrabold text-gray-900">
+                    <span class="text-gray-800">Let’s Talk</span>
+                    <span class="text-purple-600"> Growth</span>
+                    
+                </h2>
+            </div>
+
+             <input type="hidden" name="access_key" value="f831fe9c-d30c-453d-aea5-54b832a63d94">
+
+            <!-- BEM ELEMENT: form-block__field (Name) -->
+            <div class="waitlist-form__field">
+                <label for="name" class="sr-only">Your Name</label>
+                <input type="text" id="name" name="Name" placeholder="Your Name" required
+                       class="form-block__input appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:z-10 sm:text-sm">
+            </div>
+
+            <!-- BEM ELEMENT: form-block__field (Work Email) -->
+            <div class="waitlist-form__field">
+                <label for="email" class="sr-only">Your Work Email</label>
+                <input type="email" id="email" name="Email" placeholder="Your Work Email" required
+                       class="form-block__input appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:z-10 sm:text-sm">
+            </div>
+
+            <!-- BEM ELEMENT: form-block__field (Phone) -->
+            <div class="waitlist-form__field">
+                <label for="phone" class="sr-only">Your Phone Number</label>
+                <input type="tel" id="phone" name="Phone" placeholder="Your Phone Number (Mobile)" required
+                       class="form-block__input appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:z-10 sm:text-sm">
+            </div>
+
+            <!-- BEM ELEMENT: form-block__field (Location) -->
+            <div class="waitlist-form__field">
+                <label for="location" class="sr-only">Location</label>
+                <input type="text" id="location" name="Location" placeholder="Location"
+                       class="form-block__input appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:z-10 sm:text-sm">
+            </div>
+
+            <!-- BEM ELEMENT: form-block__field (Additional Notes) -->
+            <div class="waitlist-form__field">
+                <label for="notes" class="sr-only">Additional notes</label>
+                <textarea id="notes" name="Notes" placeholder="Additional notes (optional)"
+                          class="form-block__textarea appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:z-10 sm:text-sm"></textarea>
+            </div>
+
+            <!-- BEM ELEMENT: form-block__button -->
+            <button type="submit" class="form-block__button mt-6 w-full flex justify-center py-2 px-4 text-sm font-medium text-white">
+                Connect Now! 
+            </button>
+        </form>
+    </main>
+
+    <!-- BEM BLOCK: modal (Success Message) -->
+    <div id="success-modal" class="modal fixed inset-0 bg-black bg-opacity-50 z-50 items-center justify-center transition-opacity duration-300" onclick="closeModal()">
+        <div class="bg-white p-8 rounded-xl max-w-sm w-full mx-4 shadow-2xl transform scale-100 transition-transform duration-300" onclick="event.stopPropagation()">
+            <h3 class="text-2xl font-bold text-orange-600 mb-4">Waitlist Confirmed!</h3>
+            <p class="text-gray-700 mb-6">
+                Thank you for joining the Digitic.AI waitlist. We've received your details and will reach out via email in approximately two weeks.
+            </p>
+            <button onclick="closeModal()" class="w-full py-2 px-4 bg-orange-600 hover:bg-orange-700 text-white font-semibold rounded-lg transition duration-200">
+                Close
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // --- BEM BLOCK: time-update ---
+
+        /**
+         * Updates the header time every minute.
+         */
+        function updateTime() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString('en-US', {
+                hour: '2-digit',
+                minute: '2-digit',
+                hour12: true
+            });
+            document.getElementById('page-header__time').textContent = timeString;
+        }
+
+        // --- BEM BLOCK: modal ---
+
+        /**
+         * Opens the success modal.
+         */
+        function openModal() {
+            document.getElementById('success-modal').classList.add('is-open');
+        }
+
+        /**
+         * Closes the success modal.
+         */
+        function closeModal() {
+            document.getElementById('success-modal').classList.remove('is-open');
+        }
+
+
+        // --- BEM BLOCK: validation ---
+
+        /**
+         * Performs basic email format validation.
+         * @param {string} email - The email string to validate.
+         * @returns {boolean} True if valid, false otherwise.
+         */
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        /**
+         * Performs client-side form validation.
+         * @param {HTMLFormElement} form - The form element.
+         * @returns {boolean} True if validation passes.
+         */
+        function validateForm(form) {
+            const nameInput = form.querySelector('#name');
+            const emailInput = form.querySelector('#email');
+
+            if (!nameInput.value.trim()) {
+                showToast('Please enter your name.', 'bg-red-500');
+                nameInput.focus();
+                return false;
+            }
+
+            if (!emailInput.value.trim()) {
+                showToast('Please enter your work email.', 'bg-red-500');
+                emailInput.focus();
+                return false;
+            }
+
+            if (!isValidEmail(emailInput.value)) {
+                showToast('Please enter a valid email address.', 'bg-red-500');
+                emailInput.focus();
+                return false;
+            }
+
+            return true;
+        }
+
+        // Custom Toast/Notification instead of window.alert()
+        function showToast(message, bgColor) {
+            let toast = document.getElementById('custom-toast');
+            if (!toast) {
+                toast = document.createElement('div');
+                toast.id = 'custom-toast';
+                toast.className = 'fixed bottom-5 left-1/2 transform -translate-x-1/2 px-6 py-3 rounded-xl text-white shadow-xl transition-opacity duration-300 opacity-0 z-50';
+                document.body.appendChild(toast);
+            }
+
+            toast.textContent = message;
+            toast.className = `fixed bottom-5 left-1/2 transform -translate-x-1/2 px-6 py-3 rounded-xl text-white shadow-xl transition-opacity duration-300 z-50 ${bgColor}`;
+
+            // Show and fade out
+            setTimeout(() => {
+                toast.style.opacity = '1';
+            }, 10);
+            setTimeout(() => {
+                toast.style.opacity = '0';
+            }, 3000);
+        }
+
+
+        // --- BEM BLOCK: form-submission ---
+
+        /**
+         * Builds the column text for mailto and simulated sheet submission.
+         * @param {FormData} formData - The FormData object from the form.
+         * @returns {Object} { mailBody: string, sheetData: Object }
+         */
+        function buildSubmissionData(formData) {
+            const data = {};
+            let mailBody = '';
+
+            for (const [key, value] of formData.entries()) {
+                const cleanedValue = value.trim();
+                data[key] = cleanedValue;
+                mailBody += `${key}: ${cleanedValue}\n`;
+            }
+
+            // Add Timestamp to sheet data
+            data['Timestamp'] = new Date().toISOString();
+
+            return {
+                mailBody: encodeURIComponent(mailBody),
+                sheetData: data
+            };
+        }
+
+
+        /**
+         * Simulates sending data to a Google Sheet via a POST request.
+         * NOTE: This REQUIRES a Google Apps Script Web App deployed to handle the POST request.
+         * The URL below is a placeholder and WILL NOT WORK without a live script.
+         * A more secure production setup would use a backend proxy.
+         *
+         * @param {Object} data - The structured data to send.
+         */
+        // async function sendToGoogleSheet(data) {
+            // const GOOGLE_SHEET_URL = 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL';
+
+            // try {
+                // Check if the placeholder URL is used
+                // if (GOOGLE_SHEET_URL.includes('YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL')) {
+                //     console.warn("Sheet Submission Skipped: Placeholder URL is used. Replace 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL' with your actual deployed Google Apps Script URL to enable sheet logging.");
+                //     return;
+                // }
+
+                // Implement exponential backoff for resilience
+                // const MAX_RETRIES = 3;
+                // let lastError = null;
+
+                // for (let i = 0; i < MAX_RETRIES; i++) {
+                //     const response = await fetch(GOOGLE_SHEET_URL, {
+                //         method: 'POST',
+                    //     mode: 'no-cors', // Required for Google Apps Script deployment
+                    //     headers: {
+                    //         'Content-Type': 'application/json',
+                    //     },
+                    //     body: JSON.stringify(data)
+                    // });
+
+                    // For 'no-cors' mode, we cannot check response.ok, so we assume success if no fetch error.
+                    // If you use a real CORS endpoint, check: if (response.ok) return;
+        //             console.log(`Sheet submission attempt ${i + 1} complete. Status: ${response.type}`);
+        //             return; // Exit on successful submission (or assumed submission in no-cors mode)
+        //         }
+
+        //         // If loop finishes without returning, all retries failed
+        //         throw new Error("Failed to submit data to Google Sheet after multiple retries.");
+
+        //     } catch (error) {
+        //         lastError = error;
+        //         // Use a non-disruptive console error for the user experience
+        //         console.error('Error submitting to Google Sheet (Placeholder/Network Issue):', lastError);
+        //     }
+        // }
+
+        /**
+         * Opens the mailto link to share data via email.
+         * @param {string} body - The URL-encoded body content.
+         */
+        // function sendEmail(body) {
+        //     const RECEIVING_EMAIL = 'waitlist@digitic.ai';
+        //     const subject = encodeURIComponent('Waitlist Request');
+        //     const mailtoLink = `mailto:${RECEIVING_EMAIL}?subject=${subject}&body=${body}`;
+
+        //     window.location.href = mailtoLink;
+        // }
+
+        // /**
+        //  * Main form submission handler.
+        //  * @param {Event} event - The submission event.
+        //  */
+        // async function handleFormSubmit(event) {
+        //     event.preventDefault();
+        //     const form = event.target;
+
+        //     if (!validateForm(form)) {
+        //         return;
+        //     }
+
+        //     const formData = new FormData(form);
+        //     const submissionData = buildSubmissionData(formData);
+
+        //     // 1. Send data to Google Sheet (Simulated/Placeholder)
+        //     await sendToGoogleSheet(submissionData.sheetData);
+
+        //     // 2. Open Mailto link
+        //     sendEmail(submissionData.mailBody);
+
+        //     // 3. Show success message (will show briefly before mailto opens)
+        //     openModal();
+
+        //     // 4. Optionally reset form
+        //     // form.reset();
+        // }
+
+        // --- BEM BLOCK: initialization ---
+
+        // document.addEventListener('DOMContentLoaded', () => {
+        //     // Setup form submission listener
+        //     document.getElementById('waitlist-form').addEventListener('submit', handleFormSubmit);
+
+        //     // Initial time update and set interval
+        //     updateTime();
+        //     setInterval(updateTime, 60000); // Update every 60 seconds (1 minute)
+        // });
+    </script>
+</body>
+</html>

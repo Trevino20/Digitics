@@ -1,0 +1,369 @@
+        /* Base styles */
+        *{
+            scroll-behavior: smooth;
+        }
+            
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #4a4a4a;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+
+        /* Header Styles */
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background-color: #f9f9f9;
+            backdrop-filter: blur(8px);
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .header-container {
+            max-width: 1280px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 1rem;
+            padding-right: 1rem;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        @media (min-width: 769px) {
+            .header-container {
+                margin-left: 7rem;
+                margin-right: 7rem;
+                padding-left: 0;
+                padding-right: 0;
+            }
+            .nav-links {
+                display: none;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .header-container {
+                padding-left: 0;
+                padding-right: 0;
+            }
+        }
+
+        .nav-links {
+            display: none;
+        }
+
+        @media (min-width: 1024px) {
+            .nav-links {
+                display: flex;
+                gap: 2rem;
+                color: #4b5563;
+                font-weight: 500;
+            }
+        }
+
+        .nav-links a {
+            color: gray;
+            text-decoration: none;
+            transition: color 0.15s ease-in-out;
+        }
+
+        .nav-links a:hover {
+            color: #7b0cea;
+        }
+
+        .header-button {
+            display: flex;
+            align-items: center;
+            gap: 0.375rem;
+            padding: 0.5rem 1rem;
+            background-color: white;
+            border: 1px solid #e5e7eb;
+            color: #4b5563;
+            font-weight: 600;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+                        0 2px 4px -2px rgba(0, 0, 0, 0.06);
+            transition: box-shadow 0.3s ease-in-out;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            animation: grow-effect 2s ease-in-out infinite;
+            will-change: transform, box-shadow;
+        }
+
+        @keyframes shimmer-effect {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .header-button::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                to right,
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 255, 255, 0.6) 50%,
+                rgba(255, 255, 255, 0) 100%
+            );
+            transform: rotate(45deg) translateX(-100%);
+            transform-origin: center;
+            animation: shimmer-effect 2s linear infinite;
+            animation-delay: 2s;
+        }
+
+        .header-button svg {
+            width: 1rem;
+            height: 1rem;
+            fill: currentColor;
+            color: #990cea;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            min-height: calc(60vh - 40px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+
+        .hero-content {
+            max-width: 896px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-top: 1rem;
+            padding-bottom: 6rem;
+        }
+
+        /* Badge */
+        .pill-badge {
+            display: inline-flex;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.6);
+            border-radius: 9999px;
+            padding: 0.5rem 1rem;
+            margin-bottom: 0.5rem;
+            margin-top: 0.3rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #4b5563;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+            backdrop-filter: blur(8px);
+        }
+
+        .avatar-stack {
+            display: flex;
+            margin-right: 0.75rem;
+            overflow: hidden;
+        }
+
+        .avatar-stack img {
+            height: 1.5rem;
+            width: 1.5rem;
+            border-radius: 9999px;
+            border: 2px solid white;
+            margin-left: -0.5rem;
+        }
+
+        .avatar-stack img:first-child {
+            margin-left: 0;
+        }
+
+        .pill-badge .highlight {
+            font-weight: 700;
+            color: #a40cea;
+        }
+
+        .hero-heading {
+            margin-top: 35px;
+            font-size: 2.1rem;
+            line-height: 1.2;
+            letter-spacing: -0.05em;
+            margin-bottom: 1.5rem;
+            color: #333;
+            font-weight: 700;
+        }
+
+        @media (min-width: 768px) {
+            .hero-heading {
+                font-size: 5.5rem;
+            }
+            .hero-heading br {
+                display: inline;
+            }
+        }
+
+        .hero-subheading {
+            font-size: 1.25rem;
+            margin-bottom: 3rem;
+            color: #666;
+            max-width: 42rem;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn-gradient-orange {
+            /* background-image: linear-gradient(to right, #ff6a00 0%, #ff3c00 100%); */
+            background: linear-gradient(90deg, #FF69B4, #8C40F6);
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px -5px rgba(128, 50, 238, 0.5);
+            color: white;
+            font-size: 1.125rem;
+            font-weight: 700;
+            padding: 1rem 2rem;
+            border-radius: 0.75rem;
+            border: none;
+            cursor: pointer;
+            user-select: none;
+            display: inline-block;
+        }
+
+        .btn-gradient-orange:hover {
+            transform: scale(1.03);
+            box-shadow: 0 15px 30px -5px rgba(245, 84, 226, 0.7);
+        }
+
+
+
+
+
+
+
+
+
+        /* === Entry Animations === */
+
+/* ===============================
+   GLOBAL ON-LOAD ANIMATION SYSTEM
+================================ */
+
+/* Keyframes */
+@keyframes fade-up {
+    0% { opacity:0; transform: translateY(30px); }
+    100% { opacity:1; transform: translateY(0); }
+}
+
+@keyframes fade-down {
+    0% { opacity:0; transform: translateY(-30px); }
+    100% { opacity:1; transform: translateY(0); }
+}
+
+@keyframes fade-left {
+    0% { opacity:0; transform: translateX(-30px); }
+    100% { opacity:1; transform: translateX(0); }
+}
+
+@keyframes fade-right {
+    0% { opacity:0; transform: translateX(30px); }
+    100% { opacity:1; transform: translateX(0); }
+}
+
+@keyframes fade-in {
+    0% { opacity:0; }
+    100% { opacity:1; }
+}
+
+/* All animated elements initially hidden */
+.animate-on-load {
+    opacity: 0;
+}
+
+/* When JS adds this class, animation activates */
+.animate-start {
+    opacity: 1;
+}
+
+/* ===============================
+   UNIVERSAL ANIMATION CLASSES
+================================ */
+
+/* Fade Up */
+.anim-fade-up.animate-start {
+    animation: fade-up 0.7s ease forwards;
+}
+
+/* Fade Down */
+.anim-fade-down.animate-start {
+    animation: fade-down 0.7s ease forwards;
+}
+
+/* Fade Left */
+.anim-fade-left.animate-start {
+    animation: fade-left 0.7s ease forwards;
+}
+
+/* Fade Right */
+.anim-fade-right.animate-start {
+    animation: fade-right 0.7s ease forwards;
+}
+
+/* Fade Only */
+.anim-fade-in.animate-start {
+    animation: fade-in 0.7s ease forwards;
+}
+
+/* Optional timing classes */
+.anim-delay-1 { animation-delay: 0.15s; }
+.anim-delay-2 { animation-delay: 0.3s; }
+.anim-delay-3 { animation-delay: 0.45s; }
+.anim-delay-4 { animation-delay: 0.6s; }
+.anim-delay-5 { animation-delay: 0.75s; }
+
+
+
+
+/* === Scroll Reveal Animations === */
+
+/* Robust reveal system (external CSS) ---------------------------------- */
+
+/* Base: keep element visually hidden and place it off-axis with GPU-backed transform */
+.reveal {
+    opacity: 0;
+    transform: translate3d(0, 24px, 0);        /* start offset */
+    transition: opacity 0.9s ease-out, transform 0.9s cubic-bezier(.2,.9,.2,1);
+    will-change: transform, opacity;          /* hint the browser to optimize */
+    backface-visibility: hidden;
+    -webkit-font-smoothing: antialiased;
+    /* ensure transform can apply even to inline elements */
+    display: block;
+}
+
+/* Visible state: return to origin */
+.reveal.reveal-visible {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+}
+
+/* Variants: define different starting offsets per variant */
+.reveal.fade-up    { transform: translate3d(0, 24px, 0); }
+.reveal.fade-down  { transform: translate3d(0, -24px, 0); }
+.reveal.fade-left  { transform: translate3d(-24px, 0, 0); }
+.reveal.fade-right { transform: translate3d(24px, 0, 0); }
+
+/* When visible, ensure each variant goes to neutral transform */
+.reveal.fade-up.reveal-visible,
+.reveal.fade-down.reveal-visible,
+.reveal.fade-left.reveal-visible,
+.reveal.fade-right.reveal-visible{
+    transform: translate3d(0,0,0) scale(1);
+}
+
+/* Optional delays */
+.reveal.delay-1 { transition-delay: 0.18s; }
+.reveal.delay-2 { transition-delay: 0.36s; }
+.reveal.delay-3 { transition-delay: 0.54s; }

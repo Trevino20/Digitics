@@ -1,0 +1,401 @@
+/* GLOBAL STYLES AND RESETS
+    - Font Family, Background, Box Sizing
+*/
+:root {
+    --color-primary: #ff6a00; /* Bright orange */
+    --color-primary-dark: #cc5500;
+    --color-text-dark: #222222; /* Darker text for headline */
+    --color-text-light: #5e5e5e; /* Subdued text for body/nav */
+    --color-background-light: #f7f8f9;
+    --color-white: #ffffff;
+    --header-height: 80px;
+    --max-content-width: 1200px;
+    --spacing-large: 100px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--color-background-light);
+    color: var(--color-text-dark);
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+/* FLUID TYPOGRAPHY (clamp-based sizing) 
+*/
+.main-headline {
+    /* Font size from 2.5rem (mobile) to 4.5rem (desktop) */
+    font-size: clamp(2.5rem, 6vw + 1rem, 4.5rem); 
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 0.5em;
+    color: var(--color-text-dark);
+}
+
+.subheading {
+    /* Font size from 1rem (mobile) to 1.25rem (desktop) */
+    font-size: clamp(1rem, 1.2vw + 0.5rem, 1.25rem);
+    font-weight: 400;
+    color: var(--color-text-light);
+    max-width: 650px; /* Constraints width for better readability */
+    margin: 0 auto;
+}
+
+/* HEADER SECTION STYLES
+    - Sticky behavior
+*/
+.main-header {
+    position: sticky; /* Changed from fixed to sticky for smoother initial view */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--header-height);
+    background-color: var(--color-white);
+    /* Subtle border-bottom visible in design */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); 
+    z-index: 1000;
+}
+
+.header-content-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: var(--max-content-width);
+    margin: 0 auto;
+    padding: 0 30px; /* Increased padding for desktop spacing */
+    height: 100%;
+}
+.main-logo-img{
+    width: 7.8rem;
+}
+/* Logo Styling (More minimal font-like look) */
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    /* Using a dark color closer to the text color of the headline */
+    color: var(--color-text-dark); 
+    display: flex;
+    align-items: center;
+}
+
+/* Navigation Links */
+.main-nav {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: var(--color-text-light);
+    font-weight: 500;
+    padding: 5px 0;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: var(--color-text-dark);
+    /* Subtle underline animation */
+    box-shadow: 0 1px 0 0 var(--color-text-dark); 
+}
+
+/* Base Button Styling */
+.cta-button {
+    padding: 10px 18px;
+    border: none;
+    border-radius: 25px; /* More rounded corners */
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    display: flex;
+    align-items: center;
+    text-decoration: none; /* In case it's used as a link */
+}
+
+.cta-button:hover {
+    transform: translateY(-1px);
+}
+
+.icon-padding {
+    margin-right: 6px;
+}
+
+/* Header CTA Button (Got an idea?) */
+.header-cta {
+    background-color: var(--color-white);
+    color: var(--color-text-light);
+    border: 1px solid #eeeeee;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.header-cta:hover {
+    background-color: var(--color-white);
+    color: var(--color-text-dark);
+    border-color: #dddddd;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Hamburger Menu (hidden on desktop) */
+.hamburger {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--color-text-dark);
+    cursor: pointer;
+    padding: 0;
+    margin-left: 15px;
+}
+
+/* HERO SECTION STYLES
+    - Centered content
+*/
+.hero-section {
+    /* Centering the content perfectly in the remaining viewport height */
+    min-height: calc(100vh - var(--header-height));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: var(--spacing-large) 20px;
+}
+
+.hero-content-wrapper {
+    max-width: 900px;
+    /* Adjust top margin to account for sticky header and centering */
+    margin-top: calc(-1 * var(--header-height) / 2); 
+    padding: 40px 0;
+}
+
+/* Testimonial Badge (Pill Shape) */
+.testimonial-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 16px 6px 6px;
+    margin-bottom: 30px;
+    border-radius: 50px;
+    background-color: var(--color-white);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); /* More defined shadow */
+    /* Center the badge slightly better */
+    transform: translateX(0%); 
+}
+
+/* Avatar Group */
+.avatars {
+    display: flex;
+    margin-right: 12px;
+}
+
+.avatar {
+    width: 32px; /* Slightly larger avatars */
+    height: 32px;
+    border-radius: 50%;
+    border: 2px solid var(--color-white);
+    object-fit: cover;
+    background-color: #cccccc; 
+    position: relative;
+    /* Transition for subtle hover effect on the badge */
+    transition: transform 0.3s ease; 
+}
+
+.avatar.two {
+    margin-left: -10px;
+    z-index: 1;
+}
+
+.avatar.three {
+    margin-left: -10px;
+    z-index: 2;
+}
+
+.testimonial-badge:hover .avatar {
+    transform: translateY(-2px);
+}
+
+
+.badge-text {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--color-text-light);
+}
+
+.highlight {
+    color: var(--color-primary);
+    font-weight: 600;
+}
+
+/* Hero CTA Button (Large Orange Button) */
+.hero-cta {
+    margin-top: 40px;
+    padding: 18px 45px;
+    /* The gradient in the design is a smoother horizontal orange blend */
+    background: linear-gradient(90deg, #ff8c00 0%, #ff6a00 100%); 
+    color: var(--color-white);
+    font-size: 1.1rem;
+    font-weight: 700;
+    border-radius: 8px; /* Slightly less rounded than header button */
+    /* Stronger, subtle drop shadow underneath the button */
+    box-shadow: 0 10px 25px rgba(255, 106, 0, 0.45); 
+}
+
+.hero-cta:hover {
+    /* Reverse gradient and slightly increase shadow on hover */
+    background: linear-gradient(90deg, #ff6a00 0%, #ff8c00 100%);
+    box-shadow: 0 15px 35px rgba(255, 106, 0, 0.6);
+}
+
+/* MODAL STYLES (for CTA feedback) - Kept as before */
+.modal {
+    position: fixed;
+    z-index: 10000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: none; 
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.modal.active {
+    display: flex;
+    opacity: 1;
+}
+
+.modal-content {
+    background-color: var(--color-white);
+    padding: 40px;
+    border-radius: 12px;
+    width: 80%;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    position: relative;
+    transform: translateY(-20px);
+    transition: transform 0.3s ease;
+}
+
+.modal.active .modal-content {
+    transform: translateY(0);
+}
+
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    cursor: pointer;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: var(--color-text-dark);
+    text-decoration: none;
+}
+
+
+/* FADE-IN ANIMATION STYLES (Used by interact-landing.js) 
+*/
+[data-animation="fade-in"] {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s cubic-bezier(0.25, 0.8, 0.25, 1), transform 1s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+[data-animation="fade-in"].is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* RESPONSIVENESS (Media Queries)
+*/
+
+/* Tablet and Smaller Desktop (<= 1024px) */
+@media (max-width: 1024px) {
+    .header-content-wrapper {
+        padding: 0 25px;
+    }
+
+    .main-nav {
+        gap: 20px;
+    }
+}
+
+/* Mobile (<= 768px) */
+@media (max-width: 768px) {
+    .header-content-wrapper {
+        padding: 0 20px;
+    }
+
+    /* Hide desktop navigation and CTA button */
+    .main-nav,
+    .header-cta {
+        display: none;
+    }
+
+    /* Show hamburger menu */
+    .hamburger {
+        display: block;
+    }
+
+    /* Mobile Navigation Menu (JS toggles .active) */
+    .main-nav {
+        position: absolute;
+        top: var(--header-height);
+        left: 0;
+        width: 100%;
+        flex-direction: column;
+        background-color: var(--color-white);
+        border-top: 1px solid #eee;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        padding: 10px 0;
+    }
+
+    .main-nav.active {
+        display: flex;
+    }
+
+    .nav-link {
+        padding: 12px 20px;
+        text-align: center;
+        border-bottom: 1px solid #f9f9f9;
+        width: 100%;
+        box-shadow: none;
+    }
+    
+    /* Hero Section Adjustments */
+    .hero-section {
+        min-height: auto; /* Allow height to collapse */
+        padding: 5px 20px;
+    }
+
+    .hero-content-wrapper {
+        /* Reset margin to center content */
+        margin-top: 0; 
+    }
+
+    .main-headline {
+        font-size: clamp(2.2rem, 8vw, 3rem); 
+    }
+
+    .subheading {
+        padding: 0 10px;
+    }
+    
+    .hero-cta {
+        padding: 15px 30px;
+        font-size: 1rem;
+    }
+}

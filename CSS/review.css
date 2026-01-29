@@ -1,0 +1,143 @@
+        /* --- Global Styles and Typography --- */
+        .review {
+            font-family: 'Inter', sans-serif;
+            /* background-color: #f9f9f9; */
+             /* Light gray page background */
+            margin: 0;
+            padding: 80px 0;
+            overflow-x: hidden; /* Hide horizontal scrollbar caused by the slider */
+        }
+
+        .container_review {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- Slider Container and Masking --- */
+        .slider-section {
+            position: relative;
+            padding: 40px 0;
+            overflow: hidden; /* Hide cards outside the view */
+        }
+
+        /* Gradient mask for depth effect */
+        .slider-section::before,
+        .slider-section::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            width: 150px; /* Width of the fade area */
+            height: 100%;
+            z-index: 10;
+            pointer-events: none;
+        }
+        
+        .slider-section::before {
+            left: 0;
+            /* Fades from background to transparent */
+            background: linear-gradient(to right, #f9f9f9 0%, rgba(249, 249, 249, 0) 100%);
+        }
+
+        .slider-section::after {
+            right: 0;
+            /* Fades from transparent to background */
+            background: linear-gradient(to left, #f9f9f9 0%, rgba(249, 249, 249, 0) 100%);
+        }
+        
+        /* --- Slider Track and Animation --- */
+        .slider-track {
+            display: flex;
+            width: fit-content; /* Allows all duplicated cards to fit */
+            animation: scroll-left 40s linear infinite; /* Base animation */
+        }
+        
+        /* Pause animation on hover */
+        .slider-track:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes scroll-left {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                /* Translate by half the width of the duplicated track to loop smoothly */
+                transform: translateX(-50%);
+            }
+        }
+        
+        /* --- Review Card Styling --- */
+        .review-card {
+            background-color: rgb(243, 243, 243);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); /* Soft shadow */
+            
+            box-shadow: 0 4px 10px rgba(39, 3, 66, 0.4),
+              inset 0 2px 4px rgba(211, 205, 205, 0.5);
+            padding: 30px;
+            margin: 0 15px; /* Spacing between cards */
+            min-width: 320px; /* Minimum width for cards */
+            width: 320px;
+            flex-shrink: 0; /* Prevents cards from shrinking */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: box-shadow 0.3s ease;
+            height: 280px; /* Fixed height for visual consistency */
+        }
+        
+        /* --- Card Header (Avatar and Info) --- */
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .profile-img {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 15px;
+            box-shadow: 0 0 0 3px rgba(143, 31, 255, 0.2); /* Subtle ring/glow */
+        }
+
+        .reviewer-info {
+            line-height: 1.3;
+        }
+        
+        .reviewer-name {
+            font-weight: 700;
+            color: #1f1f1f;
+            font-size: 1.125rem;
+        }
+
+        .stars {
+            color: #8f1fff; /* Orange stars */
+            font-size: 1.1rem;
+        }
+        
+        /* --- Card Body and Footer --- */
+        .review-text {
+            color: #555; /* Soft gray review text */
+            font-size: 1rem;
+            flex-grow: 1; /* Pushes the metric to the bottom */
+            margin-bottom: 25px;
+        }
+
+        .metric {
+            font-weight: 800; /* Extra bold */
+            color: #333; /* Dark gray metric */
+            font-size: 1.5rem;
+        }
+
+        /* --- Responsiveness --- */
+        @media (max-width: 768px) {
+            .review-card {
+                min-width: 280px;
+                width: 280px;
+                height: 350px;
+                margin: 0 10px;
+            }
+        }

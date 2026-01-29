@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Section</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<style>
+    * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  color: #222;
+}
+
+.about-section {
+  padding: 60px 20px;
+}
+
+.about-container {
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  gap: 60px;
+  align-items: center;
+}
+
+/* LEFT IMAGE AREA */
+.about-image-section {
+  position: relative;
+  flex: 1;
+}
+
+.about-since {
+  position: absolute;
+  left: -40px;
+  top: 0;
+  background: #111;
+  color: #ffa500;
+  padding: 20px 10px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}
+
+.about-image-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.about-image {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  filter: grayscale(100%);
+}
+
+/* RIGHT CONTENT AREA */
+.about-content-section {
+  flex: 1;
+}
+
+.about-title {
+  font-size: 42px;
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 20px;
+}
+
+.about-highlight {
+  color: #ffa500;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+.about-description {
+  font-size: 16px;
+  line-height: 1.7;
+  margin-bottom: 30px;
+  color: #444;
+}
+
+.about-button {
+  display: inline-block;
+  background: #ffa500;
+  color: #000;
+  padding: 14px 32px;
+  text-decoration: none;
+  font-weight: 700;
+  border-radius: 4px;
+  transition: background 0.3s ease;
+}
+
+.about-button:hover {
+  background: #ff8c00;
+}
+
+/* RESPONSIVE */
+@media (max-width: 992px) {
+  .about-container {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .about-title {
+    font-size: 34px;
+  }
+
+  .about-since {
+    left: 0;
+    top: -50px;
+    writing-mode: horizontal-tb;
+    transform: none;
+  }
+}
+
+@media (max-width: 576px) {
+  .about-image {
+    height: 220px;
+  }
+
+  .about-title {
+    font-size: 28px;
+  }
+}
+
+</style>
+<body>
+
+<section class="about-section">
+  <div class="about-container">
+
+    <!-- LEFT IMAGE SECTION -->
+    <div class="about-image-section">
+      <div class="about-since">SINCE 1990</div>
+
+      <div class="about-image-wrapper">
+        <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d"
+             alt="Team discussion"
+             class="about-image about-image-top" />
+
+        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f"
+             alt="Working on laptop"
+             class="about-image about-image-bottom" />
+      </div>
+    </div>
+
+    <!-- RIGHT CONTENT SECTION -->
+    <div class="about-content-section">
+      <h1 class="about-title">
+        BEST DIGITAL AGENCY<br />
+        IN DOWNTOWN
+      </h1>
+
+      <p class="about-highlight">
+        DIGITICS PUTS YOUR BRAND IN THE SPOTLIGHT WITH BOLD IDEAS,
+        SMART STRATEGY, AND CONTENT THAT CLICKS. WE DON’T JUST GET
+        YOU NOTICED — WE MAKE YOU UNFORGETTABLE.
+      </p>
+
+      <p class="about-description">
+        Whether you’re looking to build brand authority, generate leads,
+        or scale your presence, we’re here to turn your digital vision
+        into measurable success. Let’s go beyond marketing — let’s
+        build a brand that wins online.
+      </p>
+
+      <a href="#" class="about-button">READ MORE</a>
+    </div>
+
+  </div>
+</section>
+
+</body>
+</html>

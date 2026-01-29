@@ -1,0 +1,46 @@
+ /* Custom Font Import */
+
+/* new marquee  */
+   .marquee1 {
+    width: 90%; /* adds space left and right */
+    margin: 0 auto; /* center marquee */
+    overflow: hidden;
+    background: #fffcfc;
+    padding: 20px 0;
+    position: relative;
+  }
+
+  .marquee1::before,
+  .marquee1::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 80px; /* fade width */
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+    background: linear-gradient(to right, #fffdfd 0%, transparent 100%);
+  }
+
+  .marquee1::after {
+    right: 0;
+    transform: rotate(180deg);
+  }
+
+  .marquee1-content {
+    display: flex;
+    gap: 50px;
+    animation: scroll 15s linear infinite;
+    width: max-content;
+  }
+  .marquee1-content img {
+    height: 60PX;
+    width: auto;
+    object-fit: contain;
+    filter: brightness(0) saturate(0%) invert(50%);
+  }
+
+  @keyframes scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }

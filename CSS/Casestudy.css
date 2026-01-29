@@ -1,0 +1,177 @@
+ /* --- Base Styles and Typography --- */
+body {
+    font-family: 'Inter', sans-serif;
+    color: #363636;
+    background-color: #fff;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* --- Section and Title --- */
+.case-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    /* ADDED PADDING: 40px top/bottom, 40px left/right for desktop view */
+    padding: 40px 40px; 
+}
+
+.case-section__title {
+    font-size: 64px;
+    font-weight: 600; /* Heavy weight */
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+/* --- Case Cards Container --- */
+.case-section__cards {
+    display: flex;
+    flex-direction: column;
+    gap: 40px; /* Vertical margin between cards */
+}
+
+/* --- Case Card Component (Desktop: Row Layout) --- */
+.case-card {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    gap: 60px; /* Big gap between columns */
+    padding: 0;
+    border-radius: 24px; /* Smooth, modern corners */
+}
+
+/* --- Image Wrapper (Handles Image and Button Position) --- */
+.case-card__image-wrapper {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    border-radius: 24px;
+    background-color: #f2f2f2; /* Fallback for the image area */
+    /* ADJUSTED ASPECT RATIO: 35% height to width for a wider image */
+    padding-top: 35%; 
+    min-width: 280px; /* Minimum size for the image area */
+}
+
+.case-card__image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Maintain aspect ratio */
+    border-radius: 24px;
+}
+
+/* --- See Project Button (Frosted Glass) --- */
+.case-card__button {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    padding: 10px 20px;
+    border-radius: 999px; /* Fully rounded */
+    text-decoration: none;
+    font-weight: 600;
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.2); /* Transparent background */
+    backdrop-filter: blur(10px); /* Frosted glass effect */
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    transition: opacity 0.3s, transform 0.3s;
+    opacity: 0.9;
+    z-index: 10; /* Ensure it's above the image */
+}
+
+.case-card__button:hover {
+    opacity: 1; /* Hover opacity animation */
+    transform: translateY(-2px);
+}
+
+/* --- Content Area --- */
+.case-card__content {
+    flex: 1;
+    padding-top: 6rem; /* Align content with the top of the image */
+    padding-bottom: 20px;
+}
+
+.case-card__title {
+    font-size: 32px;
+    font-weight: 700; /* Bold */
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.case-card__description {
+    font-size: 18px;
+    color: #555; /* Medium/light gray */
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+/* --- Metadata (Duration & Industry) --- */
+.case-card__meta-group {
+    display: flex;
+    flex-direction: column;
+    gap: 21px;
+}
+
+.case-card__meta {
+    font-size: 16px;
+    color: #555; /* Medium/light gray */
+}
+
+.case-card__meta-label {
+    font-weight: 600; /* Make the label a bit bolder */
+}
+
+.case-card__meta-value {
+    color: #000; /* Black for the actual value */
+    font-weight: 600;
+}
+
+
+/* --- Responsiveness (Mobile/Tablet < 768px) --- */
+@media (max-width: 768px) {
+    
+    .case-section {
+        /* Mobile padding remains 30px top/bottom, 15px left/right */
+        padding: 30px 15px; 
+    }
+
+    .case-section__title {
+        font-size: 48px;
+        margin-bottom: 40px;
+    }
+
+    .case-card {
+        flex-direction: column; /* Full-width stacking */
+        gap: 0; 
+        padding-bottom: 20px; 
+    }
+
+    /* Image on top (full-width) */
+    .case-card__image-wrapper {
+        width: 100%;
+        padding-top: 56.25%; /* Standard 16:9 aspect ratio for mobile stacking */
+        min-width: initial;
+    }
+
+    .case-card__image {
+        border-bottom-left-radius: 0; 
+        border-bottom-right-radius: 0;
+    }
+    
+    .case-card__content {
+        padding-top: 20px; 
+        padding-bottom: 0;
+    }
+}
+
+/* Adjust title size for very small screens */
+@media (max-width: 480px) {
+    .case-section__title {
+        font-size: 36px;
+    }
+    .case-card__title {
+        font-size: 24px;
+    }
+}

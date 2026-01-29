@@ -1,0 +1,352 @@
+/* --- Hero Section Styling (Kept the same) --- */
+        .serive-hero-section {
+            padding: 2rem 20px 0;
+            text-align: center;
+        }
+
+        .serive-hero-section h1 {
+            font-size: 4.5rem;
+            font-weight: 800;
+            color: #333;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .serive-hero-section .subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            color: #555;
+            font-weight: 600;
+        }
+
+        /* --- Results/Cards Section Styling (Kept the same) --- */
+        .results-cards {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            max-width: 1100px;
+            margin: 1rem auto 4rem;
+            padding: 0 20px;
+        }
+
+        .serivce-card{
+            flex: 1;
+            min-width: 280px;
+            max-width: 350px;
+            background-color: #fff;
+            border-radius: 45px;
+            padding: 0.4rem;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(255, 255, 255, 0.5) inset;
+            text-align: center;
+            border: 1px solid #eee;
+            box-shadow: 0 15px 30px rgba(202, 176, 244, 0.5), inset 0 5px 10px rgba(255, 255, 255, 0.5);
+        }
+
+        .serivce-card h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-top: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .serivce-card p {
+            text-align: justify;
+            font-size: 0.7rem;
+            color: #777;
+            padding: 0px 25px 22px 25px;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        /* Card Visuals Container (Kept the same) */
+        .card-visual {
+               background: repeating-linear-gradient(
+                135deg,
+                #dfb8f6,
+                #dfb8f6 10px,
+                #dfb8f6 10px,
+                #dfb8f6 20px
+            );
+            height: 200px; /* Defines the size of the top half */
+            display: flex;
+            align-items: center;
+            justify-content: center;}
+           /* --- height: 180px;
+            border-radius: 15px;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            box-sizing: border-box;
+            box-shadow: inset 0 0 50px rgba(255, 255, 255, 0.5);  -->
+        }
+
+        /* --- Visual Styling: Card 1 (Funding) --- */
+        .visual-funding {
+            border-top-left-radius: 43px;
+            border-top-right-radius: 43px;
+            background: linear-gradient(145deg, #fbf0ff, #d5a8ea);
+        }
+
+        .toggle-container {
+            display: flex;
+            align-items: center;
+            background-color: #fff;
+            padding: 10px 25px;
+            border-radius: 40px;
+            box-shadow: 0 10px 30px rgba(238, 175, 255, 0.2);
+            cursor: pointer; /* Indicate it's clickable */
+            user-select: none; /* Prevent text selection */
+        }
+
+        .toggle-text {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: #7b2cbf;
+            margin-right: 15px;
+            white-space: nowrap;
+        }
+        
+        /* The main switch background */
+        .toggle-switch {
+            width: 70px;
+            height: 35px;
+            border-radius: 20px;
+            position: relative;
+            transition: background-color 0.3s;
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.3), 0 5px 15px rgba(225, 202, 236, 0.5);
+            /* Initial OFF state: Lighter grey/orange */
+            background: linear-gradient(145deg, #e0e0e0, #cccccc);
+        }
+        
+        /* State when switch is ON (Added via JS class 'active') */
+        .toggle-switch.active {
+            background: linear-gradient(145deg, #b784e3, #7b2cbf);
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.3), 0 5px 15px rgba(106, 0, 255, 0.5);
+        }
+
+        .toggle-knob {
+            width: 30px;
+            height: 30px;
+            background-color: #fff;
+            border-radius: 50%;
+            position: absolute;
+            top: 2.5px;
+            /* Initial OFF state: Left side */
+            left: 2.5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2), inset 0 0 2px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        /* State when switch is ON (Knob is moved to the right) */
+        .toggle-switch.active .toggle-knob {
+            /* Move the knob 35px to the right: 70px width - 30px knob - 5px total padding */
+            transform: translateX(35px); 
+        }
+
+        /* --- Visual Styling: Card 2 & 3 (Conversions & Market) (Kept the same) --- */
+        .visual-conversions {
+            border-top-left-radius: 43px;
+            border-top-right-radius: 43px;
+            /* background:url('https://framerusercontent.com/images/IeeYtvtpg3idtuPwzhKuSTgZeQ.png?scale-down-to=512') ; */
+            /* background-size: cover; */
+            background: linear-gradient(90deg, #FF69B4, #8C40F6);
+            /* background: linear-gradient(145deg, #ffc78d, #ff904f); */
+            position: relative;
+        }
+
+        .conversion-circle {
+            width: 150px;
+            height: 150px;
+           /* background: linear-gradient(145deg, #, #ff5500); */
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-weight: 800;
+            /* box-shadow: 0 15px 30px rgba(255, 85, 0, 0.5), inset 0 5px 10px rgba(255, 255, 255, 0.5); */
+            position: relative;
+        }
+--- */
+        .conversion-circle .percent {
+            font-size: 3rem;
+            line-height: 1;
+        }
+
+        .conversion-circle .label {
+            font-size: 0.9rem;
+            font-weight: 600;
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 2px 10px;
+            border-radius: 10px;
+            margin-top: 5px;
+        }
+
+        .visual-market {
+             border-top-left-radius: 43px;
+            border-top-right-radius: 43px;
+            background: linear-gradient(145deg, #fcebff, #f9d4ff);
+            
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .stats-label {
+            font-size: 0.8rem;
+            color: #ff5500;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .stat-pill {
+            padding: 10px 7px;
+            border-radius: 25px;
+            margin: 8px 0;
+            width: 90%;
+            text-align: center;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #fff;
+            background: linear-gradient(90deg, #e18bf0, #8a30bb);
+            box-shadow: 0 5px 15px rgba(123, 0, 255, 0.3), inset 0 0 10px rgba(255, 255, 255, 0.3);
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .stat-pill strong {
+            font-weight: 800;
+            margin-left: 5px;
+        }
+
+        /* --- Responsiveness (Kept the same) --- */
+        @media (max-width: 1050px) {
+            .serive-hero-section h1 {
+                font-size: 3.5rem;
+            }
+            .results-cards {
+                flex-wrap: wrap;
+                gap: 1.5rem;
+            }
+            .serivce-card {
+                flex: 1 1 calc(50% - 1rem); 
+                max-width: none;
+            }
+        }
+
+        @media (max-width: 650px) {
+            .navbar {
+                flex-direction: column;
+                align-items: center;
+            }
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                margin-top: 15px;
+                padding: 0.5rem;
+                width: 100%;
+                box-shadow: none;
+                background-color: transparent;
+            }
+            .nav-links a:not(.cta-link) {
+                margin: 5px 10px;
+                padding: 5px 0;
+            }
+            .logo {
+                margin-right: 0;
+            }
+            .cta-link {
+                margin: 10px auto !important;
+                order: 10;
+            }
+
+            .serive-hero-section h1 {
+                font-size: 2.5rem;
+            }
+            
+            .results-cards {
+                flex-direction: column;
+                gap: 1.5rem;
+                margin-top: 2rem;
+            }
+
+            .serivce-card {
+                flex: 1 1 100%;
+                padding: 0.5rem;
+            }
+            
+            .toggle-text {
+                font-size: 1rem;
+            }
+            .conversion-circle {
+                width: 120px;
+                height: 120px;
+            }
+            .conversion-circle .percent {
+                font-size: 2.5rem;
+            }
+        }
+        /* Base button style */
+.conversion-btn {
+  position: relative;
+  display: inline-block;
+  padding: 12px 34px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(180deg, #c247ff, #b300ff);
+  border: none;
+  border-radius: 50px;
+  box-shadow: 0 4px 10px rgba(149, 0, 255, 0.4),
+              inset 0 2px 4px rgba(255, 255, 255, 0.5);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  overflow: hidden;
+}
+
+/* Shine animation overlay */
+.conversion-btn::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.6) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: skewX(-25deg);
+  animation: shine 1s infinite;
+  animation-timing-function: ease-in-out;
+}
+
+/* Glow effect (soft pulse) */
+@keyframes shine {
+  0% {
+    left: -75%;
+    opacity: 0;
+  }
+  40% {
+    opacity: 1;
+  }
+  100% {
+    left: 125%;
+    opacity: 0;
+  }
+}
+
+/* Hover/active interaction */
+.conversion-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(242, 0, 255, 0.6),
+              inset 0 2px 4px rgba(255, 255, 255, 0.6);
+}
+
+.conversion-btn:active {
+  transform: translateY(1px);
+}

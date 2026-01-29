@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Athos | Designer Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* --- Variables & Global Reset --- */
+:root {
+    --color-primary: #8C40F6; /* A vibrant purple for highlights */
+    --color-accent: #20C997; /* A teal/green for contrast */
+    --color-text-light: #F0F0F0;
+    --color-text-medium: #AAAAAA;
+    --color-background-dark: #0A0A10;
+    --color-card-bg-raw: 255, 255, 255; /* Raw RGB for glassmorphism */
+    --color-card-bg: rgba(var(--color-card-bg-raw), 0.05);
+    --blur-strength: 12px;
+    --border-radius-large: 24px;
+    --border-radius-medium: 12px;
+    --timing-default: 0.3s ease-out;
+    --font-family-main: 'Outfit', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family-main);
+    background-color: var(--color-background-dark);
+    color: var(--color-text-light);
+    line-height: 1.6;
+    overflow-x: hidden; /* Prevents horizontal scroll from background effect */
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+h1, h2, h3 {
+    font-weight: 600;
+}
+
+a {
+    color: var(--color-text-light);
+    text-decoration: none;
+    transition: color var(--timing-default);
+}
+
+a:hover {
+    color: var(--color-primary);
+}
+
+/* --- Gradient Moving Background --- */
+.gradient-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    filter: blur(100px); /* Massive blur for soft glow */
+    opacity: 0.5;
+}
+
+.gradients-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.gradients-container > div {
+    position: absolute;
+    border-radius: 50%;
+    transition: transform 10s ease-in-out, opacity 5s ease-in-out;
+}
+
+/* Define the base colors and sizes of the gradients */
+.g1 { background: radial-gradient(circle, rgba(140, 64, 246, 0.5), transparent); width: 600px; height: 600px; top: 10%; left: 10%; }
+.g2 { background: radial-gradient(circle, rgba(32, 201, 151, 0.5), transparent); width: 800px; height: 800px; bottom: 5%; right: 15%; }
+.g3 { background: radial-gradient(circle, rgba(255, 105, 180, 0.5), transparent); width: 500px; height: 500px; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+.g4 { background: radial-gradient(circle, rgba(255, 223, 0, 0.4), transparent); width: 700px; height: 700px; top: 0; right: 0; }
+.g5 { background: radial-gradient(circle, rgba(64, 184, 246, 0.4), transparent); width: 400px; height: 400px; bottom: 0; left: 0; }
+
+/* --- Navigation & Header --- */
+.header {
+    padding: 20px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    /* Optional: Sticky Glassmorphism Header */
+    backdrop-filter: blur(5px);
+    background-color: rgba(10, 10, 16, 0.8);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+nav a {
+    margin-left: 30px;
+    font-weight: 400;
+}
+
+/* --- Hero Section --- */
+.hero-section {
+    padding: 100px 0 150px;
+    text-align: center;
+    position: relative;
+}
+
+.hero-content {
+    max-width: 800px;
+}
+
+.profile-image-wrapper {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 20px;
+    padding: 4px;
+    border-radius: 50%;
+    /* Subtle glowing ring effect around image */
+    background: linear-gradient(45deg, var(--color-primary), var(--color-accent));
+    box-shadow: 0 0 15px rgba(140, 64, 246, 0.5);
+}
+
+.profile-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+}
+
+.verified-tick {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    color: #4CAF50; /* Green tick */
+    font-size: 1.5rem;
+    background: var(--color-background-dark);
+    border-radius: 50%;
+}
+
+.tagline {
+    font-size: 0.9rem;
+    color: var(--color-primary);
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.hero-section h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    margin-bottom: 20px;
+    background: linear-gradient(45deg, var(--color-text-light), var(--color-text-medium));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-section .description {
+    color: var(--color-text-medium);
+    max-width: 600px;
+    margin: 0 auto 30px;
+}
+
+.hero-actions {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.btn {
+    padding: 14px 30px;
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: transform var(--timing-default), box-shadow var(--timing-default);
+}
+
+.btn-primary {
+    background: var(--color-primary);
+    color: var(--color-text-light);
+    box-shadow: 0 5px 20px rgba(140, 64, 246, 0.4);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(140, 64, 246, 0.6);
+}
+
+.btn-secondary {
+    background: var(--color-card-bg);
+    color: var(--color-text-light);
+    border: 1px solid rgba(var(--color-card-bg-raw), 0.2);
+    backdrop-filter: blur(5px);
+}
+
+.btn-secondary:hover {
+    transform: translateY(-3px);
+    border-color: var(--color-primary);
+}
+
+.skill-icons-row {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.skill-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--color-card-bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    transition: transform var(--timing-default);
+}
+
+.skill-icon:hover {
+    transform: translateY(-5px) scale(1.1);
+}
+
+/* --- General Sections --- */
+section {
+    padding: 80px 0;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 60px;
+}
+
+/* --- Glassmorphism Card Style Mixin --- */
+.glass-card {
+    background: var(--color-card-bg);
+    border: 1px solid rgba(var(--color-card-bg-raw), 0.1);
+    backdrop-filter: blur(var(--blur-strength));
+    border-radius: var(--border-radius-large);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+    transition: transform var(--timing-default), box-shadow var(--timing-default);
+}
+
+/* --- Portfolio Section --- */
+.project-card {
+    display: flex;
+    gap: 40px;
+    margin-bottom: 40px;
+    padding: 30px;
+    align-items: center;
+    /* Apply Glass Card style */
+    background: var(--color-card-bg);
+    border: 1px solid rgba(var(--color-card-bg-raw), 0.1);
+    backdrop-filter: blur(var(--blur-strength));
+    border-radius: var(--border-radius-large);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+    overflow: hidden;
+}
+
+.project-card:hover {
+    box-shadow: 0 15px 50px rgba(140, 64, 246, 0.2);
+    transform: translateY(-5px);
+}
+
+.project-info {
+    flex: 1;
+    padding-right: 20px;
+}
+
+.project-category {
+    color: var(--color-accent);
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+}
+
+.project-info h3 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+}
+
+.project-description {
+    color: var(--color-text-medium);
+    margin-bottom: 20px;
+}
+
+.project-stats {
+    display: flex;
+    gap: 20px;
+    font-size: 0.9rem;
+    color: var(--color-text-medium);
+}
+
+.project-stats strong {
+    color: var(--color-text-light);
+    font-weight: 700;
+}
+
+.project-preview {
+    flex: 1;
+    max-width: 50%;
+    position: relative;
+    border-radius: var(--border-radius-medium);
+    overflow: hidden;
+    /* Mimics the video look with subtle glow */
+    box-shadow: 0 0 40px rgba(var(--color-card-bg-raw), 0.1);
+}
+
+.project-preview img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: var(--border-radius-medium);
+    transition: transform 0.8s ease; /* For tilt effect */
+}
+
+/* Hover tilt effect for the image */
+.project-card:hover .project-preview img {
+    transform: scale(1.05) rotateZ(1deg);
+}
+
+.glow-edge {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    box-shadow: inset 0 0 10px var(--color-primary);
+    pointer-events: none;
+    opacity: 0.4;
+    transition: opacity var(--timing-default);
+}
+
+/* Reverse layout for alternating cards (optional, for visual variation) */
+.project-card:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+/* --- Expertise Section (Circular Diagram) --- */
+.expertise-grid {
+    display: flex;
+    justify-content: space-around;
+    gap: 30px;
+    text-align: center;
+}
+
+.expertise-item {
+    padding: 30px;
+    flex: 1;
+    /* Apply Glass Card style */
+    background: var(--color-card-bg);
+    border: 1px solid rgba(var(--color-card-bg-raw), 0.1);
+    backdrop-filter: blur(var(--blur-strength));
+    border-radius: var(--border-radius-large);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+}
+
+.expertise-circle {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--color-background-dark) 60%, rgba(var(--color-card-bg-raw), 0.1));
+    margin: 0 auto 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5rem;
+    color: var(--color-primary);
+    position: relative;
+    /* Glowing Ring Animation */
+    box-shadow: 0 0 10px var(--color-primary);
+}
+
+.expertise-item h3 {
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+}
+
+.expertise-item p {
+    color: var(--color-text-medium);
+}
+
+
+/* --- Skills Section (Tags) --- */
+.skills-tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
+.skill-tag {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+    font-weight: 400;
+    border-radius: 50px;
+    color: var(--color-text-light);
+    background: var(--color-card-bg);
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    cursor: default;
+    /* Border Gradient effect */
+    border: 1px solid transparent;
+    background-clip: padding-box;
+    box-shadow: inset 0 0 0 1px rgba(var(--color-card-bg-raw), 0.2);
+}
+
+.skill-tag::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(from 0deg, var(--color-primary), var(--color-accent), var(--color-primary));
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.skill-tag:hover {
+    color: var(--color-background-dark);
+    font-weight: 600;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(140, 64, 246, 0.2);
+}
+
+.skill-tag:hover::before {
+    opacity: 1;
+}
+
+/* --- FAQ Accordion --- */
+.faq-accordion {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    border-radius: var(--border-radius-medium);
+    margin-bottom: 15px;
+    /* Apply Glass Card style */
+    background: var(--color-card-bg);
+    border: 1px solid rgba(var(--color-card-bg-raw), 0.1);
+    backdrop-filter: blur(var(--blur-strength));
+    overflow: hidden;
+}
+
+.faq-question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 30px;
+    cursor: pointer;
+}
+
+.faq-question h4 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.faq-question i {
+    transition: transform 0.3s ease;
+    color: var(--color-primary);
+}
+
+.faq-answer {
+    padding: 0 30px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+}
+
+.faq-answer p {
+    padding-bottom: 20px;
+    color: var(--color-text-medium);
+}
+
+.faq-item.active .faq-question i {
+    transform: rotate(180deg);
+}
+
+.faq-item.active .faq-answer {
+    max-height: 500px; /* Large enough value */
+}
+
+/* --- CTA Footer --- */
+.cta-footer {
+    padding: 100px 0 20px;
+    text-align: center;
+}
+
+.btn-cta {
+    font-size: 1.25rem;
+    padding: 20px 50px;
+    background: linear-gradient(90deg, #FF69B4, var(--color-primary), #20C997);
+    border: none;
+    color: var(--color-background-dark);
+    font-weight: 700;
+    box-shadow: 0 10px 40px rgba(140, 64, 246, 0.6);
+}
+
+.btn-cta:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 15px 50px rgba(140, 64, 246, 0.8);
+}
+
+.credits-footer {
+    margin-top: 50px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(var(--color-card-bg-raw), 0.1);
+}
+
+.credits-footer p {
+    font-size: 0.8rem;
+    color: var(--color-text-medium);
+}
+
+/* --- Scroll Reveal Animations --- */
+.scroll-reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.scroll-reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* --- Responsiveness (Mobile) --- */
+@media (max-width: 900px) {
+    .project-card {
+        flex-direction: column;
+    }
+
+    .project-card:nth-child(even) {
+        flex-direction: column;
+    }
+
+    .project-info, .project-preview {
+        max-width: 100%;
+        padding-right: 0;
+    }
+    
+    .project-preview {
+        order: -1; /* Move image to top on mobile */
+    }
+
+    .expertise-grid {
+        flex-direction: column;
+    }
+
+    .nav-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    nav a {
+        margin: 0 10px;
+    }
+
+    .hero-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .btn {
+        margin: 50px 30px;
+        /* width: 100%; */
+    }
+
+    .video-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                grid-auto-rows: minmax(150px, auto);
+            }
+
+            /* Treemap/Masonry less aggressive on mobile */
+            .video-item:nth-child(2) { grid-row: span 1; }
+
+            /* Modal */
+            .modal-content {
+                width: 95%;
+                height: 90%;
+            }
+}
+
+
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.animate-on-scroll.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hidden { display: none !important; }
+
+html { scroll-behavior: smooth; }
+
+/* --- Section --- */
+.section {
+  padding: 60px 20px;
+  max-width: 1200px;
+  margin: auto;
+  text-align: center;
+}
+
+/* --- Buttons --- */
+.cta-button {
+  display: inline-block;
+  padding: 12px 30px;
+  border-radius: 5px;
+  font-weight: bold;
+  text-decoration: none;
+  background: var(--primary-color);
+  color: #fff;
+  margin-top: 20px;
+}
+.secondary-btn {
+  background: var(--secondary-color);
+}
+
+/* --- Gallery Grid --- */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: minmax(200px, auto);
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.gallery-item {
+  width: 100%;
+  height: 100%;
+  border-radius: 6px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.gallery-item:hover {
+  transform: scale(1.02);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* Masonry effect */
+.gallery-item:nth-child(2) {
+  grid-row: span 2;
+}
+
+/* --- Mobile --- */
+@media (max-width: 768px) {
+  .gallery-grid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+  .gallery-item:nth-child(2) {
+    grid-row: span 1;
+  }
+}
+    </style>
+</head>
+<body>
+    <div class="gradient-bg">
+        <div class="gradients-container">
+            <div class="g1"></div>
+            <div class="g2"></div>
+            <div class="g3"></div>
+            <div class="g4"></div>
+            <div class="g5"></div>
+        </div>
+    </div>
+
+    <header class="header">
+        <div class="container nav-container">
+            <!-- <a href="index.html">
+                <div class="logo">
+                    di<j style="color: rgb(184, 90, 255);">g</j>itics
+                     <img src="Images/DIGITICS logo ( WHITE).png" alt="">
+                </div>
+            </a> -->
+            <a href="index.html" style="text-decoration:none;">
+    <div class="logo"
+         style="
+            display:flex;
+            align-items:center;
+            height:2em;
+            max-width:180px;
+         ">
+        <img src="Images/DIGITICS logo ( WHITE).png"
+             alt="Digitics Logo"
+             style="
+                width:100%;
+                height:auto;
+                max-height:3em;
+                object-fit:contain;
+             ">
+    </div>
+</a>
+
+            <nav>
+                <a href="#work">Work</a>
+                <a href="#about">About</a>
+                <a href="#gallery">Gallery</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero-section" id="hero">
+            <div class="container hero-content scroll-reveal">
+                <div class="profile-info">
+     
+                    <p class="tagline">Content-first branding that converts buyers</p>
+                    <h1>Performance-Led Branding for Real Estate</h1>
+                    <p class="description">To be the most trusted performance partner for real estate developers looking to grow through modern marketing.s</p>
+                </div>
+                
+                <div class="hero-actions">
+                    <a href="Contact.html"><button class="btn btn-primary">Book a Strategy Call</button></a>
+                    
+                    <!-- <button class="btn btn-secondary">Resume</button> -->
+                </div>
+
+                <div class="skill-icons-row">
+                    <div class="skill-icon"><a href="https://wa.me/8591015489"><i class="fab fa-whatsapp" style="color: #88f21e;"></i></a></div>
+
+                    <div class="skill-icon"><a href="https://www.facebook.com/share/16iRDHzLKW/"><i class="fab fa-facebook-f" style="color: #61DAFB;"></i></a></div>
+
+                    <div class="skill-icon"><a href="https://www.instagram.com/digitics.ai/"><i class="fab fa-instagram" style="color: #e61717;"></i></a></div>
+
+                    <div class="skill-icon"><a href="https://www.linkedin.com/company/digitics-ai/"><i class="fa-brands fa-linkedin-in" style="color: #FF69B4;"></i></a></div>
+
+                    <div class="skill-icon"><a href="#"><i class="fab fa-x" style="color: #F7DF1E;"></i></a></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="portfolio-section" id="work">
+            <div class="container">
+                <h2 class="section-title scroll-reveal">Selected Work</h2>
+                
+                <div class="project-card scroll-reveal">
+                    <div class="project-info">
+                        <p class="project-category">Performance & Growth Marketing</p>
+                        <h3>Multi-Developer Revenue Growth Across MMR</h3>
+                        <p class="project-description">A content-first, performance-efficient marketing engine delivering measurable revenue impact across Mumbai–Thane–MMR developers.</p>
+                        <div class="project-stats">
+                            <span class="stat-label">Leads: <strong>15,000+</strong></span>
+                            <span class="stat-label">Impact: <strong>₹100+ Cr</strong></span>
+                        </div>
+                    </div>
+                    <div class="project-preview">
+                        <img src="image/case5.1.jpeg" alt="Project Preview 1">
+                        <div class="glow-edge"></div>
+                    </div>
+                </div>
+
+                <div class="project-card scroll-reveal">
+                    <div class="project-info">
+                        <p class="project-category">Content Marketing</p>
+                        <h3>Creator-Led Buzz for MMR Township Project</h3>
+                        <p class="project-description">A multi-creator content blitz that generated organic hype, social proof, and high-intent site visits for a large township launch.</p>
+                        <div class="project-stats">
+                            <span class="stat-label">Site Visits: <strong>16+</strong></span>
+                            <span class="stat-label">Outcome: <strong>organic conversions</strong></span>
+                        </div>
+                    </div>
+                    <div class="project-preview">
+                        <img src="image/case4.jpeg" alt="Project Preview 2">
+                        <div class="glow-edge"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="expertise-section" id="about">
+            <div class="container">
+                <h2 class="section-title scroll-reveal">WHY CHOOSE US</h2>
+                <div class="expertise-grid scroll-reveal">
+                    <div class="expertise-item">
+                        <div class="expertise-circle">
+                            <i class="fa-solid fa-building"></i>
+                        </div>
+                        <h3>Real Estate Specialists </h3>
+                        <p>We understand buyer psychology, market behavior, and conversion dynamics.</p>
+                    </div>
+                    <div class="expertise-item">
+                        <div class="expertise-circle">
+                            <i class="fas fa-check-circle"></i>
+                            <!-- <i class="fa-solid fa-ranking-star"></i> -->
+                        </div>
+                        <h3>Content-First Approach</h3>
+                        <p>Clear storytelling → better engagement → higher conversions.</p>
+                    </div>
+                    <div class="expertise-item">
+                        <div class="expertise-circle">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <h3>Transparent Reporting</h3>
+                        <p>Real-time dashboards and detailed performance breakdowns.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <h2 class="section-title scroll-reveal"></h2>
+                <div class="expertise-grid scroll-reveal">
+                    <div class="expertise-item">
+                        <div class="expertise-circle">
+                            <i class="fas fa-bezier-curve"></i>
+                        </div>
+                        <h3>Performance-Driven Execution</h3>
+                        <p>Your budget is optimized using precise data and audience intelligence.</p>
+                    </div>
+                    <div class="expertise-item">
+                        <div class="expertise-circle">
+                            <i class="fa-solid fa-filter-circle-dollar"></i>
+                        </div>
+                        <h3>Conversion-Focused Funnels</h3>
+                        <p>Every touchpoint is designed to move prospects closer to site visits and bookings.</p>
+                    </div>
+                    <div class="expertise-item">
+                        <div class="expertise-circle">
+                            <!-- <i class="fas fa-lightbulb"></i> -->
+                            <i class="fa-solid fa-calendar-check"></i>
+                        </div>
+                        <h3>End-to-End Solutions</h3>
+                        <p>From initial branding to lead generation and post-engagement funnels — everything under one roof.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+<main>
+<section id="gallery" class="section animate-on-scroll">
+<h2 class="section-title scroll-reveal">What We’ve Built</h2>
+
+<div class="gallery-grid">
+  <iframe class="gallery-item" src="https://www.youtube.com/embed/wRCCPFMFzJQ" allowfullscreen></iframe>
+  <iframe class="gallery-item" src="https://www.youtube.com/embed/G3rwfadvMO0" allowfullscreen></iframe>
+  <iframe class="gallery-item" src="https://www.youtube.com/embed/ZtDWl9M-MXQ" allowfullscreen></iframe>
+  <iframe class="gallery-item" src="https://www.youtube.com/embed/XCBgXfelvBQ" allowfullscreen></iframe>
+  <iframe class="gallery-item" src="https://www.youtube.com/embed/1sSg4KM2404" allowfullscreen></iframe>
+  <iframe class="gallery-item" src="https://www.youtube.com/embed/OHYFjI_sXNg" allowfullscreen></iframe>
+
+  <iframe class="gallery-item hidden" src="https://www.youtube.com/embed/PQhfQ_1UnEQ" allowfullscreen></iframe>
+  <iframe class="gallery-item hidden" src="https://www.youtube.com/embed/iLQ2Z_KbTdY" allowfullscreen></iframe>
+  <iframe class="gallery-item hidden" src="https://www.youtube.com/embed/lBDCVZ4NVSI" allowfullscreen></iframe>
+  <iframe class="gallery-item hidden" src="https://www.youtube.com/embed/RK6M2CFOMe8" allowfullscreen></iframe>
+  <iframe class="gallery-item hidden" src="https://www.youtube.com/embed/hZ2SGd4G10w" allowfullscreen></iframe>
+  <iframe class="gallery-item hidden" src="https://www.youtube.com/embed/IT9F_sHhLwQ" allowfullscreen></iframe>
+</div>
+
+<div class="gallery-actions scroll-reveal">
+                    <button id="show-more-videos" class="btn btn-secondary">Show 8 More Videos</button>
+                    <button id="show-more-btn" class="cta-button secondary-btn" id="show-more-videos" class="btn btn-secondary">
+  Show More Photos <i class="fas fa-plus-circle"></i>
+                </div>
+
+</button>
+</section>
+</main>
+
+
+
+        <section class="faq-section">
+            <div class="container">
+                <h2 class="section-title scroll-reveal">Frequently Asked Questions</h2>
+                <div class="faq-accordion scroll-reveal">
+                    <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>What digital marketing services do you provide?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We offer end-to-end digital marketing services including performance marketing, SEO, content strategy, social media management, branding, and conversion optimization.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>How do you measure digital marketing performance?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We track performance using real-time dashboards, focusing on key metrics such as leads, conversions, ROI, engagement rates, and campaign effectiveness.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>How soon can I expect results from campaigns?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Paid campaigns can deliver quick results, while SEO and content-led strategies typically show sustainable growth within 3–6 months.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>Do you specialize in real estate digital marketing?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes. We specialize in real estate marketing, leveraging buyer psychology, local market insights, and performance-driven strategies to generate qualified leads.</p>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="cta-footer" id="contact">
+        <div class="container scroll-reveal">
+            <a href="Contact.html"><button class="btn btn-cta">Contact Us</button></a>
+            
+        </div>
+        <div class="credits-footer">
+            <p>Performance Marketing & Content-First Branding for Real Estate Developers</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+    // --- 1. Moving Gradient Background Animation ---
+    const gradients = document.querySelectorAll('.gradients-container > div');
+    const moveGradients = () => {
+        gradients.forEach((g, index) => {
+            // Generate random positions within a range
+            const x = Math.floor(Math.random() * (window.innerWidth * 1.5)) - (window.innerWidth * 0.25);
+            const y = Math.floor(Math.random() * (window.innerHeight * 1.5)) - (window.innerHeight * 0.25);
+
+            // Apply smooth, slow transition
+            g.style.transform = `translate(${x}px, ${y}px) rotate(${Math.random() * 360}deg)`;
+        });
+    };
+
+    // Initial move and set interval for continuous movement
+    moveGradients();
+    setInterval(moveGradients, 10000); // Move every 10 seconds
+
+    // --- 2. FAQ Accordion ---
+    const faqItems = document.querySelectorAll('.faq-item');
+
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        question.addEventListener('click', () => {
+            // Close all other open answers
+            faqItems.forEach(i => {
+                if (i !== item && i.classList.contains('active')) {
+                    i.classList.remove('active');
+                }
+            });
+
+            // Toggle the current item
+            item.classList.toggle('active');
+        });
+    });
+
+    // --- 3. Smooth Reveal Animations on Scroll ---
+    const scrollRevealElements = document.querySelectorAll('.scroll-reveal');
+
+    const observerOptions = {
+        root: null, // relative to the viewport
+        rootMargin: '0px',
+        threshold: 0.1 // Trigger when 10% of the element is visible
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Add 'visible' class to trigger CSS animation
+                entry.target.classList.add('visible');
+                // Stop observing once it's visible
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    scrollRevealElements.forEach(el => {
+        observer.observe(el);
+    });
+
+    // --- 5. Video Gallery Show More Functionality ---
+    const showMoreButton = document.getElementById('show-more-videos');
+    const hiddenVideos = document.querySelectorAll('.video-item.hidden');
+    const videosPerPage = 8;
+    let videosShown = 8; // Already showing the first 8
+
+    if (showMoreButton) {
+        // Initially hide the button if there are no hidden videos
+        if (hiddenVideos.length === 0) {
+            showMoreButton.style.display = 'none';
+        } else {
+            // Update button text to reflect how many more can be shown
+            showMoreButton.textContent = `Show ${hiddenVideos.length} More Videos`;
+        }
+
+        showMoreButton.addEventListener('click', () => {
+            // Find the videos that are currently hidden
+            const currentlyHidden = document.querySelectorAll('.video-item.hidden');
+            
+            // Get the next batch of videos
+            const videosToReveal = Array.from(currentlyHidden).slice(0, videosPerPage);
+
+            videosToReveal.forEach(video => {
+                video.classList.remove('hidden');
+                // Apply a quick fade-in effect via CSS
+                setTimeout(() => {
+                    video.classList.add('fade-in');
+                }, 10);
+            });
+
+            // Check if all videos are now visible
+            const remainingHidden = document.querySelectorAll('.video-item.hidden');
+            if (remainingHidden.length === 0) {
+                showMoreButton.style.display = 'none';
+            } else {
+                showMoreButton.textContent = `Show ${remainingHidden.length} More Videos`;
+            }
+        });
+    }
+
+    // You would typically open a modal with the video player here when a thumbnail is clicked
+    document.querySelectorAll('.video-item').forEach(item => {
+        item.addEventListener('click', () => {
+            const videoId = 'dQw4w9WgXcQ'; // Replace with actual video ID logic
+            console.log(`Playing video with ID: ${videoId}`);
+            // Example action: window.open(`https://www.youtube.com/watch?v=${videoId}`, '_blank');
+        });
+    });
+
+    // --- 4. Parallax Effect (Simple Hover Parallax on Project Cards) ---
+    const projectCards = document.querySelectorAll('.project-card');
+    
+    projectCards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const cardRect = card.getBoundingClientRect();
+            
+            // Calculate mouse position relative to the card center (normalized -1 to 1)
+            const mouseX = (e.clientX - cardRect.left) / cardRect.width - 0.5;
+            const mouseY = (e.clientY - cardRect.top) / cardRect.height - 0.5;
+
+            // Get the image element inside the preview
+            const image = card.querySelector('.project-preview img');
+            
+            if (image) {
+                // Apply subtle translation based on mouse movement
+                const translateLimit = 5; // Pixels
+                image.style.transform = `
+                    translate(${mouseX * translateLimit}px, ${mouseY * translateLimit}px)
+                    ${card.classList.contains('active-tilt') ? 'scale(1.05) rotateZ(1deg)' : ''} 
+                `;
+            }
+        });
+
+        card.addEventListener('mouseenter', () => {
+             // Use a class to control the tilt/scale state from CSS on hover
+             card.classList.add('active-tilt');
+        });
+
+        card.addEventListener('mouseleave', () => {
+            // Reset image position and remove tilt class
+            const image = card.querySelector('.project-preview img');
+            if (image) {
+                image.style.transform = 'translate(0, 0) scale(1) rotateZ(0deg)';
+            }
+            card.classList.remove('active-tilt');
+        });
+    });
+});
+    </script>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+  /* Scroll animation */
+  const animated = document.querySelectorAll('.animate-on-scroll');
+  const onScroll = () => {
+    const trigger = window.innerHeight * 0.85;
+    animated.forEach(el => {
+      if (el.getBoundingClientRect().top < trigger) {
+        el.classList.add('visible');
+      }
+    });
+  };
+  onScroll();
+  window.addEventListener('scroll', onScroll);
+
+  /* Show more / less */
+  const btn = document.getElementById('show-more-btn');
+  const items = document.querySelectorAll('.gallery-item.hidden');
+
+  btn.addEventListener('click', () => {
+    const hidden = document.querySelectorAll('.gallery-item.hidden');
+    const isHidden = hidden.length > 0;
+
+    hidden.forEach(el => el.classList.remove('hidden'));
+
+    btn.innerHTML = isHidden
+      ? 'Show Less Photos <i class="fas fa-minus-circle"></i>'
+      : 'Show More Photos <i class="fas fa-plus-circle"></i>';
+
+    if (!isHidden) {
+      items.forEach(el => el.classList.add('hidden'));
+      document.getElementById('gallery').scrollIntoView({ behavior: 'smooth' });
+    }
+  });
+
+});
+</script>
+</body>
+</html>

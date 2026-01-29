@@ -1,0 +1,247 @@
+
+/* ---------------------------------------------------------------- */
+/* BASE STYLES - Apply to all screen sizes (Desktop First Approach) */
+/* ---------------------------------------------------------------- */
+
+.footer-section {
+    background-color: #f5f5f5;;
+    border-radius: 40px;
+    padding: 80px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 40px;
+    font-family: Arial, sans-serif;
+    max-width: 1400px;
+    margin: 40px auto;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.05);
+}
+
+.footer-left-content {
+    flex: 7;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    max-width: 70%; /* Desktop width */
+}
+
+.footer-logo-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.footer-logo {
+    width: 10rem; /* Adjusted to a fixed size for better control */
+    /* height: 45px; */
+    margin-right: 12px;
+    /* filter: drop-shadow(0px 0px 8px rgba(255, 90, 31, 0.6)); */
+}
+
+.footer-heading {
+    margin: 0;
+    font-size: 2.2em;
+    font-weight: bold;
+    color: #333;
+    line-height: 1;
+}
+
+.footer-subtext {
+    font-size: 1.1em;
+    color: #555;
+    line-height: 1.6;
+    margin: 0 0 10px 0;
+    max-width: 450px;
+}
+
+.footer-btn {
+    text-decoration: none;
+    background-image: linear-gradient(135deg, #971fff, #64009e);
+    color: #ffffff;
+    font-weight: bold;
+    padding: 18px 40px;
+    border-radius: 40px;
+    box-shadow: 0px 10px 40px rgba(155, 40, 255, 0.45);
+    font-size: 1.1em;
+    display: inline-block;
+    transition: transform 0.2s ease-in-out;
+}
+
+.footer-btn:hover {
+    transform: translateY(-3px);
+}
+
+.footer-right-content {
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; /* Align right on desktop */
+    text-align: right; /* Align right on desktop */
+    max-width: 30%; /* Desktop width */
+}
+
+.footer-social-title {
+    font-size: 1.4em;
+    font-weight: bold;
+    color: #333;
+    margin: 0 0 20px 0;
+}
+
+.footer-social-icons {
+    display: flex;
+    gap: 20px;
+}
+
+.footer-social-icon {
+    width: 30px;
+    height: 30px;
+    /* filter: grayscale(100%) brightness(0.7);  */
+    /* Grey color */
+    transition: filter 0.2s ease-in-out;
+}
+
+.footer-social-icon:hover {
+    filter: grayscale(0%) brightness(1); /* Color on hover */
+}
+  /* ---------------------------------------------------------------- */
+/* BASE STYLES - Apply to all screen sizes (Desktop First Approach) */
+/* ---------------------------------------------------------------- */
+
+.footer-section {
+    background-color: #f5f5f5;;
+    border-radius: 40px;
+    padding: 80px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 40px;
+    font-family: Arial, sans-serif;
+    max-width: 1400px;
+    margin: 40px auto;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.05);
+    
+    /* MODIFICATION 1: Set position to relative */
+    position: relative; 
+    /* Ensures .footer_marquee is positioned relative to this element */
+    
+    /* MODIFICATION 2: Add overflow: hidden; */
+    /* This will clip the large marquee text to the bounds of the footer */
+    overflow: hidden; 
+}
+
+/* ... other styles for .footer-left-content, .footer-logo-group, etc. ... */
+
+/* Define color variable for text dark color (assumed from previous context) */
+:root {
+    --color-text-dark: #333;
+}
+
+.footer_marquee {
+    /* MODIFICATION 3: Set position to absolute (already done, but keep) */
+    position: absolute; 
+    
+    /* MODIFICATION 4: Center vertically within the footer-section */
+    top: 15%; 
+    
+    /* MODIFICATION 5: Start at the left edge of the footer-section */
+    left: 0; 
+    
+    /* MODIFICATION 6: Set width to 100% of the footer-section */
+    width: 100%; 
+    
+    /* MODIFICATION 7: Adjust transform for vertical centering */
+    /* Remove translateX(-50%) as the width is now 100% of the container */
+    transform: translateY(-50%); 
+    
+    /* MODIFICATION 8: Lower z-index to ensure it's in the background (already done, but keep) */
+    z-index: 0; 
+    pointer-events: none;
+    
+    /* Remove overflow: hidden; from here, it should be on the container (.footer-section) */
+    /* You had width: 100vw; which is now changed to width: 100%; */
+}
+
+.footer_marquee__text {
+    /* Keep all original styles */
+    font-size: clamp(8rem, 20vw, 30rem); 
+    font-weight: 700;
+    color: var(--color-text-dark);
+    opacity: 0.07; 
+    white-space: nowrap;
+    text-transform: lowercase;
+    user-select: none;
+    
+    /* Animation properties */
+    animation: scroll 30s linear infinite;
+
+    display: inline-block; 
+    
+    /* Keep this. The animation keyframes handle the lateral movement. */
+    transform: translateX(0); 
+}
+
+/* The keyframes need adjustment for continuous loop on duplicated content */
+@keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); } 
+}
+/* ... rest of your CSS, including media queries ... */
+/* ---------------------------------------------------------------- */
+/* MEDIA QUERY - APPLIES BELOW 768px (for tablets and mobile)       */
+/* ---------------------------------------------------------------- */
+
+@media (max-width: 768px) {
+    .footer-section {
+        padding: 40px 20px; /* Reduced padding for mobile */
+        border-radius: 20px; /* Slightly smaller border radius */
+        flex-direction: column; /* Stacks columns vertically */
+        gap: 30px; /* Reduced gap */
+    }
+
+    .footer-left-content,
+    .footer-right-content {
+        flex: auto; /* Resets flex for stacking */
+        width: 100%; /* Takes full width */
+        max-width: 100%; /* Takes full width */
+        align-items: center; /* Center content when stacked */
+        text-align: center; /* Center text when stacked */
+    }
+    
+    .footer-logo-group {
+        justify-content: center; /* Center logo and name */
+        width: 100%;
+    }
+
+    .footer-right-content {
+        margin-top: 10px; /* Small space after the left content */
+        align-items: center; /* Center social group */
+        text-align: center; /* Center social title */
+    }
+    
+    .footer-social-icons {
+        justify-content: center; /* Ensure icons are centered */
+        gap: 15px; /* Slightly tighter spacing for mobile */
+    }
+
+    .footer-heading {
+        font-size: 1.8em; /* Reduced heading size */
+    }
+    
+    .footer-subtext {
+        text-align: center; /* Ensure subtext is centered */
+        max-width: 90%; /* Allows text to use more width */
+        margin: 0 auto 8px auto;
+    }
+}
+
+/* ---------------------------------------------------------------- */
+/* MEDIA QUERY - APPLIES BELOW 480px (for small mobile screens)     */
+/* ---------------------------------------------------------------- */
+
+@media (max-width: 480px) {
+    .footer-btn {
+        padding: 12px 25px; /* Smaller button on tiny screens */
+        font-size: 0.9em;
+    }
+}

@@ -1,0 +1,38 @@
+        /* Custom styles for smooth transition and unique colors */
+        .FMG--FaqContainer {
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            background-color: #ffffff;
+        }
+
+        /* Specific smooth transition for the answer content */
+        .FMG--AnswerContent {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+        }
+
+        /* Class added when the question is active */
+        .FMG--AnswerContent.active {
+            max-height: 500px; /* Use a value large enough for all answers */
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+
+        /* Rotation for the Chevron Icon */
+        .FMG--Chevron {
+            transition: transform 0.3s ease-out;
+        }
+
+        .FMG--Chevron.active {
+            transform: rotate(180deg);
+        }
+
+        /* Inter font for a clean look */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* Light gray background */
+        }
+
+        .FMG--QuestionButton:hover {
+            background-color: #f1f5f9; /* Subtle hover effect */
+        }

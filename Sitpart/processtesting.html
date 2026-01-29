@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Process Journey - SaaS Website</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f9fb;
+            min-height: 200vh;
+        }
+        
+        /* Premium Shadow Style */
+        .card-shadow {
+            box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.1), 0 5px 15px -5px rgba(0, 0, 0, 0.04);
+            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s ease-out;
+            border-radius: 16px;
+        }
+        
+        /* Card Tilt: Subtle 3D tilt for static presentation */
+        .process-step-container[data-side="left"] .process-card {
+            transform: perspective(1000px) rotateX(1deg) rotateZ(-2deg);
+        }
+        .process-step-container[data-side="right"] .process-card {
+            transform: perspective(1000px) rotateX(1deg) rotateZ(2deg);
+        }
+
+        /* Hover Effect: Straighten, scale, and float */
+        .card-shadow:hover {
+            transform: scale(1.02) translateY(-5px) rotateZ(0deg);
+            box-shadow: 0 25px 50px -10px rgba(0, 0, 0, 0.15), 0 10px 20px -10px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Accent Colors & Gradients for Visual Flair */
+        .accent-orange { color: #ff6a00; }
+        .accent-blue { color: #3b82f6; }
+        .accent-purple { color: #a855f7; }
+        .accent-green { color: #10b981; }
+        .accent-pink { color: #f472b6; }
+        .accent-yellow { color: #facc15; }
+
+        .bg-grad-orange { background: linear-gradient(135deg, #ffedd5 0%, #fed7aa 100%); } 
+        .bg-grad-blue { background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%); } 
+        .bg-grad-purple { background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%); } 
+        .bg-grad-green { background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%); } 
+        .bg-grad-pink { background: linear-gradient(135deg, #fce7f6 0%, #fbcfe8 100%); } 
+        .bg-grad-yellow { background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); } 
+
+        .inner-gradient-box {
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            height: 90%;
+        }
+
+        /* Canvas setup for the connector line */
+        #connector-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            /* Send canvas behind everything, except the wrapper (which is relative/z-20) */
+            z-index: 10; 
+        }
+
+        .pin-shadow {
+            filter: drop-shadow(0 6px 6px rgba(0, 0, 0, 0.3));
+        }
+
+        /* Desktop-specific (lg: breakpoint in Tailwind) layout for zig-zag */
+        @media (min-width: 1024px) {
+            .process-wrapper {
+                /* Confine cards to the middle area */
+                width: 40%; 
+                margin: 0 auto;
+                max-width: 40rem; 
+            }
+            /* Repositioning cards back over the central line for the zig-zag effect */
+            /* Crucial: These margins create the zig-zag effect on desktop */
+            .process-step-container[data-side="left"] > div {
+                margin-left: -50%;
+                z-index: 20; 
+            }
+            .process-step-container[data-side="right"] > div {
+                margin-right: -50%;
+                z-index: 20;
+            }
+        }
+        
+        /* Mobile Specific Styles: Ensure full width and vertical alignment */
+        @media (max-width: 1023px) {
+            /* Ensure the cards take up the full width minus padding for mobile, 
+               and alignment is consistent for the straight line down the center. */
+            .process-step-container {
+                justify-content: center !important; /* Force cards to center in mobile */
+            }
+            .process-step-container > div {
+                width: 90% !important; /* Use a slightly wider container for mobile */
+                max-width: 24rem; /* Max-width for mobile card */
+            }
+        }
+
+    </style>
+</head>
+<div class="antialiased text-gray-800">
+
+    <div class="pt-20 lg:pt-32"></div>
+    
+    <section id="process-section" class="bg-white py-24 md:py-32">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-sm font-semibold uppercase tracking-wider text-orange-600 mb-3">Our Process</h2>
+            <h3 class="text-4xl md:text-5xl font-extrabold mb-16 md:mb-24 text-gray-900">
+                From idea to launch — here’s how we make it happen.
+            </h3>
+
+            <div id="journey-container" class="relative">
+                
+                <canvas id="connector-canvas"></canvas>
+
+                <div id="process-wrapper" class="relative process-wrapper flex flex-col gap-24 z-20">
+                    
+                    <script>
+                        // Function to generate the Pin Image HTML string
+                        function generatePinImage() {
+                            // Using a high-quality placeholder URL from Framer for the visual pin
+                            const pinUrl = 'https://framerusercontent.com/images/ceWoRGcAON0ADKDjPd9HhJlf0h4.png?width=313&height=395';
+                            return `
+                                <img src="${pinUrl}" alt="3D Push Pin" 
+                                    class="pin-shadow absolute -top-5 left-1/2 transform -translate-x-1/2 w-12 h-16 lg:w-16 lg:h-20 z-30 object-contain"
+                                    onerror="this.style.display='none'"
+                                />
+                            `;
+                        }
+                    </script>
+
+                    <div class="process-step-container flex justify-center lg:justify-start w-full" data-side="left">
+                        <div class="w-full lg:w-3/5 p-4 lg:p-0">
+                            <div id="card-1" class="process-card bg-white rounded-xl card-shadow cursor-pointer aspect-square p-4 lg:p-6 text-left lg:ml-auto relative">
+                                <script>document.getElementById('card-1').insertAdjacentHTML('afterbegin', generatePinImage())</script>
+                                
+                                <div class="inner-gradient-box bg-grad-orange p-4 lg:p-6 mt-4 lg:mt-8">
+                                    <p class="text-lg font-extrabold mb-1 accent-orange">01</p>
+                                    <h4 class="text-xl lg:text-2xl font-bold mb-2 text-gray-900">Proposal & Strategy</h4>
+                                    <p class="text-sm lg:text-base font-medium text-[#555]">We align goals, scope the project, and create a roadmap.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="process-step-container flex justify-center lg:justify-end w-full" data-side="right">
+                        <div class="w-full lg:w-3/5 p-4 lg:p-0">
+                            <div id="card-2" class="process-card bg-white rounded-xl card-shadow cursor-pointer aspect-square p-4 lg:p-6 text-left lg:mr-auto relative">
+                                <script>document.getElementById('card-2').insertAdjacentHTML('afterbegin', generatePinImage())</script>
+                                
+                                <div class="inner-gradient-box bg-grad-blue p-4 lg:p-6 mt-4 lg:mt-8">
+                                    <p class="text-lg font-extrabold mb-1 accent-blue">02</p>
+                                    <h4 class="text-xl lg:text-2xl font-bold mb-2 text-gray-900">Wireframe & UX</h4>
+                                    <p class="text-sm lg:text-base font-medium text-[#555]">A clear, conversion-focused blueprint of every page.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="process-step-container flex justify-center lg:justify-start w-full" data-side="left">
+                        <div class="w-full lg:w-3/5 p-4 lg:p-0">
+                            <div id="card-3" class="process-card bg-white rounded-xl card-shadow cursor-pointer aspect-square p-4 lg:p-6 text-left lg:ml-auto relative">
+                                <script>document.getElementById('card-3').insertAdjacentHTML('afterbegin', generatePinImage())</script>
+                                
+                                <div class="inner-gradient-box bg-grad-purple p-4 lg:p-6 mt-4 lg:mt-8">
+                                    <p class="text-lg font-extrabold mb-1 accent-purple">03</p>
+                                    <h4 class="text-xl lg:text-2xl font-bold mb-2 text-gray-900">Visual Design</h4>
+                                    <p class="text-sm lg:text-base font-medium text-[#555]">High-fidelity mocks, mood boards, and brand implementation.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="process-step-container flex justify-center lg:justify-end w-full" data-side="right">
+                        <div class="w-full lg:w-3/5 p-4 lg:p-0">
+                            <div id="card-4" class="process-card bg-white rounded-xl card-shadow cursor-pointer aspect-square p-4 lg:p-6 text-left lg:mr-auto relative">
+                                <script>document.getElementById('card-4').insertAdjacentHTML('afterbegin', generatePinImage())</script>
+                                
+                                <div class="inner-gradient-box bg-grad-green p-4 lg:p-6 mt-4 lg:mt-8">
+                                    <p class="text-lg font-extrabold mb-1 accent-green">04</p>
+                                    <h4 class="text-xl lg:text-2xl font-bold mb-2 text-gray-900">Clean Development</h4>
+                                    <p class="text-sm lg:text-base font-medium text-[#555]">Blazing fast code built in modern framework, ready to scale.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="process-step-container flex justify-center lg:justify-start w-full" data-side="left">
+                        <div class="w-full lg:w-3/5 p-4 lg:p-0">
+                            <div id="card-5" class="process-card bg-white rounded-xl card-shadow cursor-pointer aspect-square p-4 lg:p-6 text-left lg:ml-auto relative">
+                                <script>document.getElementById('card-5').insertAdjacentHTML('afterbegin', generatePinImage())</script>
+                                
+                                <div class="inner-gradient-box bg-grad-pink p-4 lg:p-6 mt-4 lg:mt-8">
+                                    <p class="text-lg font-extrabold mb-1 accent-pink">05</p>
+                                    <h4 class="text-xl lg:text-2xl font-bold mb-2 text-gray-900">Quality Assurance</h4>
+                                    <p class="text-sm lg:text-base font-medium text-[#555]">Cross-browser compatibility and performance checks.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="process-step-container flex justify-center lg:justify-end w-full" data-side="right">
+                        <div class="w-full lg:w-3/5 p-4 lg:p-0">
+                            <div id="card-6" class="process-card bg-white rounded-xl card-shadow cursor-pointer aspect-square p-4 lg:p-6 text-left lg:mr-auto relative">
+                                <script>document.getElementById('card-6').insertAdjacentHTML('afterbegin', generatePinImage())</script>
+                                
+                                <div class="inner-gradient-box bg-grad-yellow p-4 lg:p-6 mt-4 lg:mt-8">
+                                    <p class="text-lg font-extrabold mb-1 accent-yellow">06</p>
+                                    <h4 class="text-xl lg:text-2xl font-bold mb-2 text-gray-900">Launch & Handoff</h4>
+                                    <p class="text-sm lg:text-base font-medium text-[#555]">Deployment, custom video tutorials, and 30 days of support.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="pt-20 lg:pt-32"></div>
+
+
+    <script>
+        // GSAP is loaded via CDN link in the head
+
+        let pathData = {}; 
+        let canvasContext;
+        const animationProps = { pathOffset: 0 }; 
+
+        /**
+         * Calculates the coordinates of card centers and the total path length,
+         * resizing the canvas dynamically to cover the path.
+         */
+        function calculatePath() {
+            const container = document.getElementById('journey-container');
+            const wrapper = document.getElementById('process-wrapper');
+            const cardElements = Array.from(document.querySelectorAll('.process-card'));
+            const canvas = document.getElementById('connector-canvas');
+            
+            if (cardElements.length < 2) return null;
+
+            // Use getBoundingClientRect to get accurate positions
+            const containerRect = container.getBoundingClientRect();
+            const wrapperRect = wrapper.getBoundingClientRect();
+            
+            // Set canvas size and position relative to its container
+            canvas.width = containerRect.width;
+            canvas.height = wrapperRect.height + 20; // +20 for buffer
+            // Position canvas to cover the wrapper
+            canvas.style.top = `${wrapper.offsetTop}px`; 
+            canvas.style.left = `0px`;
+
+            canvasContext = canvas.getContext('2d');
+            canvasContext.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Map card centers (x, y) relative to the top-left of the wrapper/canvas
+            const centers = cardElements.map(el => {
+                const cardRect = el.getBoundingClientRect();
+                const cardCenterY = cardRect.top + cardRect.height / 2;
+                const cardCenterX = cardRect.left + cardRect.width / 2;
+
+                return {
+                    x: cardCenterX - containerRect.left, // X coordinate relative to canvas
+                    y: cardCenterY - wrapperRect.top, // Y coordinate relative to canvas
+                    side: el.closest('.process-step-container').getAttribute('data-side')
+                };
+            });
+
+            // Estimate total length for stroke-dashoffset animation
+            let totalPathLength = 0;
+            for (let i = 1; i < centers.length; i++) {
+                const p0 = centers[i - 1];
+                const p1 = centers[i];
+                const dist = Math.sqrt(Math.pow(p1.x - p0.x, 2) + Math.pow(p1.y - p0.y, 2));
+                // Use a factor of 1.5 for desktop to account for curves; 1 for mobile straight lines
+                totalPathLength += dist * (window.innerWidth < 1024 ? 1 : 1.5); 
+            }
+            
+            return { centers, totalPathLength };
+        }
+
+        /**
+         * Draws the dotted path on the canvas, handling both mobile (straight) 
+         * and desktop (curved zig-zag) layouts.
+         * @param {number} offset - The scroll-driven progress (0 to totalPathLength)
+         */
+        function drawLine(offset = 0) {
+            if (!canvasContext || !pathData.centers) return;
+
+            const { centers, totalPathLength } = pathData;
+            
+            canvasContext.clearRect(0, 0, canvasContext.canvas.width, canvasContext.canvas.height);
+            canvasContext.lineWidth = 2;
+            canvasContext.strokeStyle = '#d3d3d3'; 
+            canvasContext.setLineDash([8, 8]); 
+            
+            // This is the core of the drawing animation: stroke-dashoffset
+            canvasContext.lineDashOffset = totalPathLength - offset;
+
+            canvasContext.beginPath();
+            
+            const isMobile = window.innerWidth < 1024;
+            // The starting point is the center of the first card
+            canvasContext.moveTo(centers[0].x, centers[0].y);
+
+            // Calculate the central X point for the vertical mobile line
+            const mobileCenterX = canvasContext.canvas.width / 2; 
+
+            for (let i = 1; i < centers.length; i++) {
+                const p0 = centers[i - 1];
+                const p1 = centers[i];
+
+                if (isMobile) {
+                    // Mobile: Draw to the central vertical line, then down to the next card center
+                    
+                    // 1. Draw from the previous card center (p0.x, p0.y) to the central line (mobileCenterX, p0.y)
+                    canvasContext.lineTo(mobileCenterX, p0.y);
+
+                    // 2. Draw down the central line to the y-position of the next card
+                    canvasContext.lineTo(mobileCenterX, p1.y);
+
+                    // 3. Draw from the central line (mobileCenterX, p1.y) to the next card center (p1.x, p1.y)
+                    canvasContext.lineTo(p1.x, p1.y);
+                    
+                    // Move the starting point for the next segment (i+1) to the current card center (p1)
+                    canvasContext.moveTo(p1.x, p1.y); 
+
+                } else {
+                    // Desktop: Draw a smooth curved line (Bezier curve)
+                    const controlOffset = 180; 
+                    
+                    // Control points create the S-curve between the cards
+                    const cp1X = p0.x + (p0.side === 'left' ? controlOffset : -controlOffset);
+                    const cp1Y = p0.y;
+                    const cp2X = p1.x + (p1.side === 'left' ? controlOffset : -controlOffset);
+                    const cp2Y = p1.y;
+
+                    canvasContext.bezierCurveTo(cp1X, cp1Y, cp2X, cp2Y, p1.x, p1.y);
+                }
+            }
+            
+            canvasContext.stroke();
+        }
+
+
+        /**
+         * Sets up GSAP ScrollTriggers for both card reveal and path drawing.
+         */
+        function setupGSAP() {
+            gsap.registerPlugin(ScrollTrigger);
+            
+            // Kill existing triggers to prevent duplicates on resize
+            ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+            
+            // 1. Card Reveal Animation: Fade in and slide from the side
+            gsap.utils.toArray(".process-card").forEach((card) => {
+                const isLeft = card.closest('.process-step-container').getAttribute('data-side') === 'left';
+                const isMobile = window.innerWidth < 1024;
+                
+                // Set initial state - adjust x offset for mobile (center alignment)
+                gsap.set(card, { 
+                    opacity: 0, 
+                    y: 60,
+                    x: isMobile ? 0 : (isLeft ? -150 : 150),
+                    scale: 0.8
+                });
+
+                gsap.to(card, {
+                    opacity: 1, y: 0, x: 0, scale: 1,
+                    duration: 1.2,
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: card,
+                        start: "top 85%", // Start animation when the card enters the view
+                        toggleActions: "play none none none",
+                    }
+                });
+            });
+
+
+            // 2. Dotted Line Drawing Animation: Draw line as user scrolls
+            if (pathData.totalPathLength > 0) {
+                animationProps.pathOffset = 0; 
+
+                window.lineTrigger = gsap.to(animationProps, {
+                    pathOffset: pathData.totalPathLength, 
+                    duration: 4, 
+                    ease: "none",
+                    scrollTrigger: {
+                        trigger: "#process-wrapper",
+                        start: "top center",
+                        end: "bottom center",
+                        scrub: true,
+                        onUpdate: self => {
+                            // Redraw the line on every scroll update
+                            drawLine(self.progress * pathData.totalPathLength); 
+                        }
+                    }
+                });
+            }
+        }
+
+
+        // --- Initialization and Event Handling ---
+        function initJourney() {
+            // Recalculate positions first
+            pathData = calculatePath(); 
+            // Draw the line at 0 progress before setting up triggers
+            drawLine(0); 
+            // Set up GSAP animations
+            setupGSAP();
+        }
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            initJourney(); 
+            
+            // Handle window resize events for full responsiveness
+            window.addEventListener('resize', () => {
+                // Throttle the resize event slightly
+                if (window.resizeTimer) clearTimeout(window.resizeTimer);
+                window.resizeTimer = setTimeout(initJourney, 150);
+            });
+        });
+    </script>
+</div>
+</html>

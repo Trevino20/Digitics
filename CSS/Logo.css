@@ -1,0 +1,115 @@
+
+        /* Base Styling */
+        /* body {
+            font-family: Arial, sans-serif;
+            background-color: #2b1313;
+            margin: 0;
+            padding: 0;
+        } */
+
+        .logo--section {
+            padding: 20px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .logo--title {
+            font-family: 'Inter', sans-serif;
+            font-size: 2em;
+            font-weight: 800;
+            letter-spacing: 2px;
+             color: #333;
+            margin-bottom: 20px;
+            /* text-transform: uppercase; */
+        }
+
+        /* --- DESKTOP STAGGERED PATTERN (6-5-6-5) --- */
+        .logo--grid {
+            display: grid;
+            /* 30 columns allows for perfect 5 and 6 division */
+            grid-template-columns: repeat(30, 1fr); 
+            gap: 20px;
+            row-gap: 10px;
+            justify-content: center;
+        }
+
+        .logo--card {
+            /* background: #ffffff; */
+            border: 1px solid #f0f0f0;
+            border-radius: 12px;
+            padding: 6px;
+            height: 6em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .logo--card:hover {
+            transform: translateY(-5px);
+            /* box-shadow: 0 12px 24px rgba(0,0,0,0.06); */
+            border-color: #e0e0e0;
+        }
+
+        .logo--image {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        /* Desktop Logic: One cycle is 11 items (6 + 5) */
+        /* Row of 6: Each spans 5 columns (30/6 = 5) */
+        .logo--card:nth-child(11n+1),
+        .logo--card:nth-child(11n+2),
+        .logo--card:nth-child(11n+3),
+        .logo--card:nth-child(11n+4),
+        .logo--card:nth-child(11n+5),
+        .logo--card:nth-child(11n+6) {
+            grid-column: span 5;
+        }
+
+        /* Row of 5: Each spans 6 columns (30/5 = 6) */
+        .logo--card:nth-child(11n+7),
+        .logo--card:nth-child(11n+8),
+        .logo--card:nth-child(11n+9),
+        .logo--card:nth-child(11n+10),
+        .logo--card:nth-child(11n+11) {
+            grid-column: span 6;
+        }
+
+        /* --- MOBILE VIEW (3-4-3-4) --- */
+        @media (max-width: 768px) {
+            .logo--grid {
+                grid-template-columns: repeat(12, 1fr);
+                gap: 2px;
+            }
+
+            .logo--card {
+                height: 6em;
+                padding: 1px;
+                border-radius: 8px;
+            }
+             .logo--title {
+            font-size: 1.4em;
+        }
+
+            /* Reset desktop spans */
+            .logo--card { grid-column: auto !important; }
+
+            /* Mobile Logic: One cycle is 7 items (3 + 4) */
+            /* Row of 3: Span 4 (12/3 = 4) */
+            .logo--card:nth-child(7n+1),
+            .logo--card:nth-child(7n+2),
+            .logo--card:nth-child(7n+3) {
+                grid-column: span 4 !important;
+            }
+
+            /* Row of 4: Span 3 (12/4 = 3) */
+            .logo--card:nth-child(7n+4),
+            .logo--card:nth-child(7n+5),
+            .logo--card:nth-child(7n+6),
+            .logo--card:nth-child(7n+7) {
+                grid-column: span 3 !important;
+            }
+        }

@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campanian Case Studies Showcase</title>
+    <style>
+        /*
+        ========================================
+        CAMPANIAN CSS STYLES
+        ========================================
+        */
+
+        :root {
+            /* Colors */
+            --Campanian-color-orange: #ff7e5f;
+            --Campanian-color-green: #79d2b2;
+            --Campanian-color-blue: #64b5f6;
+            --Campanian-color-text-dark: #333;
+            --Campanian-color-text-light: #f9f9f9;
+            --Campanian-color-background: #f4f7f9;
+            --Campanian-color-white: #ffffff;
+            /* Shadows */
+            --Campanian-shadow-soft: 0 5px 15px rgba(0, 0, 0, 0.08);
+            --Campanian-shadow-lift: 0 15px 35px rgba(0, 0, 0, 0.15);
+            /* Dimensions */
+            --Campanian-radius: 12px;
+            --Campanian-spacing-large: 40px;
+            --Campanian-spacing-medium: 20px;
+        }
+
+        /* Base Styles */
+        body {
+            font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+            background-color: var(--Campanian-color-background);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        .Campanian-responsive-wrapper {
+            max-width: 1200px;
+            margin: var(--Campanian-spacing-large) auto;
+            padding: 0 var(--Campanian-spacing-medium);
+        }
+
+        /* Card Grid Layout */
+        .Campanian-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* Default: 3 Columns */
+            gap: var(--Campanian-spacing-large);
+            margin-bottom: var(--Campanian-spacing-large);
+        }
+
+        /* Card Styling */
+        .Campanian-card {
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            color: var(--Campanian-color-text-dark);
+            border-radius: var(--Campanian-radius);
+            box-shadow: var(--Campanian-shadow-soft);
+            overflow: hidden;
+            background-color: var(--Campanian-color-white);
+            
+            /* Initial state for slide-in animation */
+            opacity: 0;
+            transform: translateY(20px);
+            transition: 
+                transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+                box-shadow 0.3s ease,
+                opacity 0.6s ease-in-out;
+        }
+
+        /* Delay for staggered slide-in effect */
+        .Campanian-card:nth-child(1) { transition-delay: 0.1s; }
+        .Campanian-card:nth-child(2) { transition-delay: 0.2s; }
+        .Campanian-card:nth-child(3) { transition-delay: 0.3s; }
+        
+        /* Final state for slide-in animation (triggered by body class) */
+        .Campanian-loaded .Campanian-card {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Hover Animation */
+        .Campanian-card:hover {
+            transform: translateY(-8px); /* Lift */
+            box-shadow: var(--Campanian-shadow-lift); /* Shadow increase */
+        }
+
+        /* Top Colored Section */
+        .Campanian-top {
+            padding: var(--Campanian-spacing-medium);
+            height: 150px; /* Fixed height for visual consistency */
+            display: flex;
+            justify-content: center;
+            align-items: center; /* Centered content vertically and horizontally */
+            color: var(--Campanian-color-text-light);
+            font-size: 1.2em;
+            font-weight: 600;
+            
+            /* Image Styling: Placeholder background */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative; /* To darken the image for text readability */
+        }
+
+        /* Overlay for better text readability */
+        .Campanian-top::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            /* Adjust opacity based on card color for contrast */
+            opacity: 0.5; 
+            z-index: 1;
+        }
+        
+        .Campanian-top span {
+            z-index: 2; /* Keep text above the overlay */
+        }
+
+
+        /* Specific Card Colors and Images */
+        .Campanian-card-a .Campanian-top { 
+            background-color: var(--Campanian-color-orange); 
+            /* Placeholder for Orange card */
+            background-image: url('https://picsum.photos/600/400?random=1');
+        }
+        .Campanian-card-a .Campanian-top::before { background-color: var(--Campanian-color-orange); }
+
+
+        .Campanian-card-b .Campanian-top { 
+            background-color: var(--Campanian-color-green); 
+            /* Placeholder for Green card */
+            background-image: url('https://picsum.photos/600/400?random=2');
+        }
+        .Campanian-card-b .Campanian-top::before { background-color: var(--Campanian-color-green); }
+
+
+        .Campanian-card-c .Campanian-top { 
+            background-color: var(--Campanian-color-blue); 
+            /* Placeholder for Blue card */
+            background-image: url('https://picsum.photos/600/400?random=3');
+        }
+        .Campanian-card-c .Campanian-top::before { background-color: var(--Campanian-color-blue); }
+
+        /* Bottom White Content Section */
+        .Campanian-bottom {
+            padding: var(--Campanian-spacing-medium);
+            flex-grow: 1; /* Ensure content section expands to fill space */
+        }
+
+        .Campanian-heading {
+            font-size: 1.5em;
+            font-weight: 700;
+            margin: 0 0 5px 0;
+            line-height: 1.2;
+        }
+
+        .Campanian-description {
+            font-size: 0.95em;
+            color: #666;
+            margin: 0;
+        }
+
+        /* CTA Button Styling */
+        .Campanian-cta-wrapper {
+            text-align: center;
+            padding-bottom: var(--Campanian-spacing-large);
+        }
+
+        .Campanian-button {
+            display: inline-block;
+            padding: 15px 35px;
+            font-size: 1.1em;
+            font-weight: 600;
+            text-decoration: none;
+            color: var(--Campanian-color-text-dark);
+            background-color: transparent;
+            border: 2px solid var(--Campanian-color-text-dark);
+            border-radius: 50px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .Campanian-button:hover {
+            background-color: var(--Campanian-color-text-dark);
+            color: var(--Campanian-color-white);
+            border-color: var(--Campanian-color-text-dark);
+        }
+
+        /*
+        ========================================
+        CAMPANIAN MEDIA QUERIES (RESPONSIVENESS)
+        ========================================
+        */
+
+        /* Tablet Layout: 2 Columns (Max width 1024px) */
+        @media (max-width: 1024px) {
+            .Campanian-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
+            }
+        }
+
+        /* Mobile Layout: 1 Column (Max width 600px) */
+        @media (max-width: 600px) {
+            .Campanian-responsive-wrapper {
+                margin: var(--Campanian-spacing-medium) auto;
+                padding: 0 15px;
+            }
+            
+            .Campanian-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .Campanian-top {
+                height: 120px;
+            }
+
+            .Campanian-heading {
+                font-size: 1.3em;
+            }
+
+            .Campanian-button {
+                width: 80%;
+                padding: 12px 20px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+
+<body class="Campanian-loaded">
+    <div class="Campanian-responsive-wrapper">
+
+        <div class="Campanian-grid">
+            
+            <a href="#project-a" class="Campanian-card Campanian-card-a">
+                <div class="Campanian-top">
+                    <span>Project A Screenshot</span>
+                </div>
+                <div class="Campanian-bottom">
+                    <h3 class="Campanian-heading">PlatformX Redesign</h3>
+                    <p class="Campanian-description">A complete overhaul of a SaaS platform focusing on improved UX and conversion rates.</p>
+                </div>
+            </a>
+            
+
+
+            <a href="#project-b" class="Campanian-card Campanian-card-b">
+                <div class="Campanian-top">
+                    <span>Project B Screenshot</span>
+                </div>
+                <div class="Campanian-bottom">
+                    <h3 class="Campanian-heading">FinTech App Launch</h3>
+                    <p class="Campanian-description">Developing a secure and intuitive mobile application for investment tracking and management.</p>
+                </div>
+            </a>
+
+
+            <a href="#project-c" class="Campanian-card Campanian-card-c">
+                <div class="Campanian-top">
+                    <span>Project C Screenshot</span>
+                </div>
+                <div class="Campanian-bottom">
+                    <h3 class="Campanian-heading">E-Commerce Flow Optimization</h3>
+                    <p class="Campanian-description">A deep dive into the checkout process, resulting in a 30% reduction in cart abandonment.</p>
+                </div>
+            </a>
+            
+
+        </div>
+
+        <div class="Campanian-cta-wrapper">
+            <a href="#all-studies" class="Campanian-button">
+                See All 12+ Case Studies
+            </a>
+        </div>
+
+    </div>
+
+</body>
+</html>

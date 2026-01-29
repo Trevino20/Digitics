@@ -1,0 +1,47 @@
+
+    .logo-carousel {
+        width: 100%;
+        overflow: hidden;
+        padding: 30px 0;
+        position: relative;
+
+        /* Framer-style mask fade */
+        mask-image: linear-gradient(
+            to right,
+            transparent 0%,
+            black 10%,
+            black 90%,
+            transparent 100%
+        );
+        -webkit-mask-image: linear-gradient(
+            to right,
+            transparent 0%,
+            black 10%,
+            black 90%,
+            transparent 100%
+        );
+    }
+
+    .logo-track {
+        display: flex;
+        gap: 25px;
+        animation: scroll 50s linear infinite;
+        width: max-content;
+    }
+
+    .logo-track img {
+        height: 100px;
+        object-fit: contain;
+        opacity: 0.9;
+        transition: 0.3s ease;
+    }
+
+    .logo-track img:hover {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+
+    @keyframes scroll {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+    }

@@ -1,0 +1,223 @@
+        /* Base Styles */
+:root {
+    --bg-color: #ffffff; /* Very dark navy/black */
+    --card-bg-color: #fdfdfe; /* Slightly lighter dark shade */
+    --text-color: #0b0b0b; /* White text for high contrast */
+    --accent-color: #9d00c8c4; /* Neon teal/green accent */
+    --font-color:#292929;
+    --border-radius: 12px;
+    --soft-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Subtle shadow */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    padding: 20px;
+}
+
+/* Typography and Headings */
+.header1 {
+    text-align: left;
+    margin-bottom: 30px;
+}
+
+.header1 h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    padding: 0 20px;
+}
+
+h2 {
+    font-size: 1.8rem;
+    color: var(--accent-color);
+    border-left: 4px solid var(--accent-color);
+    padding-left: 15px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+.h2 {
+    font-size: 1.8rem;
+    color: var(--accent-color);
+    border-left: 4px solid var(--accent-color);
+    padding-left: 15px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+h3.box-title {
+    font-size: 1.3rem;
+    border-bottom: 2px solid var(--accent-color);
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+p {
+    margin-bottom: 20px;
+    font-size: 1rem;
+    color: var(--font-color)/* Slightly muted white for readability */
+}
+
+.accent-text {
+    color: var(--accent-color);
+}
+
+/* Banner and Image Styling */
+.banner {
+    width: 100%;
+    margin-bottom: 40px;
+    padding: 0 20px;
+}
+
+.banner-image {
+    width: 100%;
+    height: auto;
+    border-radius: var(--border-radius);
+    display: block;
+    object-fit: cover;
+    box-shadow: var(--soft-shadow);
+}
+
+.image-section {
+    margin: 30px 0;
+}
+
+.crypto-image {
+    width: 100%;
+    height: auto;
+    border-radius: var(--border-radius);
+    display: block;
+    object-fit: cover;
+    box-shadow: var(--soft-shadow);
+}
+
+/* Main Layout: CSS Grid */
+.container {
+    display: grid;
+    /* Two columns: content (2 parts), sidebar (1 part) */
+    grid-template-columns: 2fr 1fr; 
+    gap: 40px;
+    max-width: 1400px;
+    margin: 0 auto; /* Center the grid container */
+    padding: 0 20px;
+}
+
+.content {
+    /* Content column */
+    grid-column: 1 / 2;
+}
+
+.sidebar {
+    /* Sidebar column */
+    grid-column: 2 / 3;
+    padding-top: 30px; /* Align sidebar with the first content block's h2 */
+}
+
+/* Content Block Styling */
+.content-block {
+    margin-bottom: 20px;
+}
+
+.separator {
+    border: none;
+    height: 1px;
+    background-color: var(--card-bg-color);
+    margin: 40px 0;
+}
+
+/* Sidebar Box Styling (Card style) */
+.sidebar-box {
+    background-color: var(--card-bg-color);
+    padding: 20px;
+    margin-bottom: 30px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--soft-shadow);
+}
+
+/* Categories Box Specific */
+.categories-box ul {
+    list-style: none;
+}
+
+.categories-box li {
+    margin-bottom: 10px;
+    font-size: 1.05rem;
+    display: flex;
+    align-items: center;
+}
+
+.categories-box li i {
+    margin-right: 10px;
+    font-size: 1.1em;
+}
+
+/* Share Article Box Specific */
+.social-icons {
+    display: flex;
+    gap: 15px;
+}
+
+.social-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    color: var(--text-color);
+    background-color: rgba(243, 176, 255, 0.1);
+    transition: background-color 0.3s, color 0.3s, transform 0.3s;
+    font-size: 1.2rem;
+}
+
+.social-icon:hover {
+    background-color: #0b0b0b;
+    color: #0b0b0b; /* Dark text on hover for contrast */
+    transform: translateY(-2px);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .container {
+        /* On smaller screens, stack the layout into a single column */
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .content, .sidebar {
+        grid-column: 1 / -1; /* Make both sections span the full width */
+    }
+
+    .sidebar {
+        padding-top: 0; /* Remove top padding when stacked */
+    }
+}
+
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+    
+    .header h1 {
+        font-size: 2rem;
+        padding: 0;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+    
+    .banner, .container {
+        padding: 0 10px;
+    }
+}

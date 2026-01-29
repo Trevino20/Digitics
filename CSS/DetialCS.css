@@ -1,0 +1,179 @@
+/* --- CSS Variables and Global Reset --- */
+:root {
+    --color-primary-text: #000;
+    --color-secondary-text: #555;
+    --color-background: #fff;
+    --spacing-large: 60px;
+    --spacing-medium: 40px;
+    --spacing-small: 20px;
+    --radius-large: 24px;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* --- Base Styles and Typography --- */
+body {
+    font-family: 'Inter', sans-serif;
+    color: var(--color-primary-text);
+    background-color: var(--color-background);
+    line-height: 1.6;
+}
+
+.project-details {
+    max-width: 1100px; /* Content max width */
+    margin: 0 auto;
+    padding: var(--spacing-medium);
+}
+
+/* --- 1. Header Section --- */
+.project-header {
+    text-align: center;
+    padding: var(--spacing-large) 0;
+}
+
+.project-header__title {
+    font-size: 72px;
+    font-weight: 800;
+    margin-bottom: 10px;
+}
+
+.project-header__subtitle {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--color-secondary-text); /* Light gray text */
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* --- 2. Project Image Section --- */
+.project-image {
+    padding: var(--spacing-small) 0;
+    display: flex;
+    justify-content: center;
+    margin-bottom: var(--spacing-large);
+}
+
+.project-image__wrapper {
+    width: 100%;
+    max-width: 900px; /* Constrain the image slightly */
+    border-radius: var(--radius-large);
+    overflow: hidden;
+    /* Subtle drop shadow */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); 
+}
+
+.project-image__asset {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+/* --- 3. About the Client Section --- */
+.project-about {
+    max-width: 750px;
+    margin: 0 auto;
+    padding: var(--spacing-medium) 0;
+}
+
+.project-about__title {
+    font-size: 20px;
+    font-weight: 700; /* Bold, small heading */
+    margin-bottom: 20px;
+}
+
+.project-about__text {
+    font-size: 17px;
+    color: var(--color-secondary-text); /* Light gray text */
+    margin-bottom: 20px;
+}
+
+.project-about__text strong {
+    color: var(--color-primary-text); /* Bold parts stand out */
+    font-weight: 700;
+}
+
+/* --- 4. Additional Visual Section --- */
+.project-extra {
+    display: flex;
+    justify-content: center;
+    padding: var(--spacing-large) 0;
+}
+
+.project-extra__image {
+    width: 100%;
+    max-width: 500px; 
+    height: auto;
+    display: block;
+    border-radius: 12px; /* Slightly smaller radius */
+    /* Soft shadow */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08); 
+    object-fit: cover;
+}
+
+/* --- 5. Instagram Embed Section (New Style) --- */
+.project-social-embed {
+    padding: var(--spacing-medium) 0 var(--spacing-large);
+    display: flex;
+    justify-content: center; /* Center the blockquote element */
+}
+/* The blockquote itself uses inline styles for Instagram to manage its size */
+
+
+/* --- Responsiveness (Mobile/Tablet < 768px) --- */
+@media (max-width: 768px) {
+    
+    .project-details {
+        padding: var(--spacing-small); /* Reduce padding */
+    }
+
+    /* Header adjustments */
+    .project-header {
+        padding: var(--spacing-medium) 0;
+    }
+
+    .project-header__title {
+        font-size: 48px; /* Reduce font size */
+    }
+
+    .project-header__subtitle {
+        font-size: 16px;
+        padding: 0 10px;
+    }
+    
+    /* Image section adjustments */
+    .project-image__wrapper {
+        border-radius: 12px; /* Reduce radius slightly */
+    }
+
+    .project-image {
+        margin-bottom: var(--spacing-medium);
+    }
+    
+    /* About section adjustments */
+    .project-about {
+        padding: var(--spacing-small) 0;
+        text-align: left; /* Text stays left aligned for readability */
+    }
+    
+    .project-about__title {
+        font-size: 18px;
+    }
+    
+    .project-about__text {
+        font-size: 16px;
+    }
+    
+    /* Extra visual section adjustments */
+    .project-extra {
+        padding: var(--spacing-medium) 0;
+    }
+    
+    .project-extra__image {
+        max-width: 90%; /* Scale down a bit more */
+    }
+}

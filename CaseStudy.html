@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digitic.Ai - Digital Marketing For Business & Brands</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+
+    <!-- Extranal CSS -->
+    <!-- <link rel="stylesheet" href="CSS/main-style-landing.css"> -->
+    <!-- <link rel="stylesheet" href="CSS/brandslider.css"> -->
+    <link rel="stylesheet" href="CSS/navba.css">
+    <link rel="stylesheet" href="CSS/footer.css">
+    <style>
+        :root {
+            --primary-purple: #58068b;
+            --primary-glow: rgba(124, 77, 255, 0.3);
+            --text-dark: #2d3436;
+            --text-light: #636e72;
+            --bg-gray: #f9f9fb;
+            --white: #ffffff;
+            --transition: all 0.3s ease-in-out;
+        }
+        .card-body {
+            background-color: var(--bg-gray);
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 40px;
+            font-family: 'Inter', sans-serif;
+            /* font-family: 'Outfit', -apple-system, 'sans-serif';  */
+        }
+
+        /* Container for the cards */
+        .case-study-section {
+            max-width: 1000px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+
+        /* Base Card Styling */
+        .card {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 40px;
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+            text-decoration: none;
+            color: inherit;
+            cursor: pointer;
+        }
+
+        /* Hover Effect: Purple Glow & Lift */
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px var(--primary-glow);
+        }
+
+        /* Alternate Layout */
+        .card.reverse {
+            flex-direction: row-reverse;
+        }
+
+        /* Image Container */
+        .card-image-wrapper {
+            flex: 1;
+            min-width: 300px;
+            height: 220px;
+            background: #fff;
+            border: 1px solid #f0f0f0;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* padding: 20px; */
+            overflow: hidden;
+        }
+
+        .card-image-wrapper img {
+            /* max-width: 80%; */
+            height: auto;
+            object-fit: contain;
+            max-width: auto;
+            background-size: cover;
+        }
+
+        /* Content Area */
+        .card-content {
+            flex: 1.2;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .category {
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1.2px;
+            color: #056565; /* Teal accent like the screenshot */
+            text-transform: uppercase;
+        }
+
+        .title {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--primary-purple);
+            line-height: 1.2;
+        }
+
+        .description {
+            font-size: 16px;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        .metrics {
+            display: flex;
+            gap: 20px;
+            margin: 8px 0;
+            font-size: 14px;
+            color: #b2bec3;
+        }
+
+        .metrics span b {
+            color: var(--text-dark);
+        }
+
+        /* Button Styling */
+        .btn-read-more {
+            align-self: flex-start;
+            padding: 12px 28px;
+            background: var(--primary-purple);
+            color: white;
+            border-radius: 50px;
+            font-weight: 600;
+            border: none;
+            margin-top: 10px;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(124, 77, 255, 0.2);
+        }
+
+        .btn-read-more:hover {
+            background: #6c36ff;
+            box-shadow: 0 6px 20px var(--primary-glow);
+        }
+
+        /* Responsive Design (Mobile) */
+        @media (max-width: 768px) {
+            .card, .card.reverse {
+                flex-direction: column;
+                padding: 24px;
+                gap: 24px;
+            }
+
+            .card-image-wrapper {
+                width: 100%;
+                min-width: unset;
+            }
+
+            .title {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Main Header Section-->
+
+    <body class="antialiased text-gray-800">
+
+        <header class="header animate-on-load anim-fade-down">
+            <div class="header-container">
+                <a href="index.html">
+                    <img src="Images/digitics new logo.png"
+                        style="height: 4.8rem; filter: drop-shadow(0px 0px 8px rgba(214, 194, 244, 0.512));"
+                        alt="Skale Logo">
+                </a>
+
+                <nav class="nav-links">
+                    <a href="PotfolioPage.html">Portfolio</a>
+                    <a href="Contact.html">Contact</a>
+                </nav>
+
+                <a href="CaseStudy.html">
+                    <button class="header-button">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M7.5 6a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM3.751 20.105a8.25 8.25 0 0 1 16.498 0 .75.75 0 0 1-.437.695A18.683 18.683 0 0 1 12 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 0 1-.437-.695Z"
+                                clip-rule="evenodd" />
+                        </svg>
+                        <span>Case Studies</span>
+                    </button></a>
+            </div>
+        </header>
+        <!-- Navigation section end -->
+
+      <section class="card-body">
+    <div class="case-study-section">
+        
+        <div class="card reveal fade-up delay-1">
+            <div class="card-image-wrapper">
+                <img src="image/Case1.jpeg" alt="Logo">
+            </div>
+            <div class="card-content">
+                <span class="category">Performance Marketing</span>
+                <h2 class="title">Data-Driven Retargeting for Real Estate</h2>
+                <p class="description">Precision retargeting campaigns that improved buyer clarity, confidence, and repeat engagement using lifestyle-led creatives. Booking: 2–3 → 5–6 / month</p>
+                <div class="metrics">
+                    <span>Booking: <b>+2x</b></span>
+                    <span>Sustained Growth: <b>+3x</b></span>
+                </div>
+                <a href="CaseStudy/CS1.html">
+                <button class="btn-read-more">Read More</button></a>
+            </div>
+        </div>
+
+        <div class="card reverse reveal fade-up delay-2">
+            <div class="card-image-wrapper">
+                <img src="image/case2.jpeg" alt="Logo">
+            </div>
+            <div class="card-content">
+                <span class="category">Performance Marketing</span>
+                <h2 class="title">Mandate Partnership for Consistent Bookings</h2>
+                <p class="description">A 360° performance pipeline delivering predictable monthly sales through USP-led creatives and data-driven media optimization.</p>
+                <div class="metrics">
+                    <span>Bookings: <b>12+ / month</b></span>
+                    <span>Consistency <b>100%</b></span>
+                </div>
+                <a href="CaseStudy/CS2.html">
+                <button class="btn-read-more">Read More</button></a>
+            </div>
+        </div>
+
+         
+        <div class="card reveal fade-up">
+            <div class="card-image-wrapper">
+                <img src="image/case3.jpeg" alt="Logo">
+            </div>
+            <div class="card-content">
+                <span class="category">Performance Marketing</span>
+                <h2 class="title">Local Trust Building for New Payment Scheme</h2>
+                <p class="description">Influencer-led and location-focused storytelling that simplified a 20:80 scheme and built buyer confidence at the local level.</p>
+                <div class="metrics">
+                    <span>Site Visits: <b>+30%</b></span>
+                    <span>Bookings: <b>1.5×</b></span>
+                </div>
+                <a href="CaseStudy/CS3.html">
+                <button class="btn-read-more">Read More</button></a>
+            </div>
+        </div>
+
+        <div class="card reverse reveal fade-up delay-1">
+            <div class="card-image-wrapper">
+                <img src="image/case4.jpeg" alt="Logo">
+            </div>
+            <div class="card-content">
+                <span class="category">Content Marketing</span>
+                <h2 class="title">Creator-Led Buzz for MMR Township Project</h2>
+                <p class="description">A multi-creator content blitz that generated organic hype, social proof, and high-intent site visits for a large township launch.</p>
+                <div class="metrics">
+                    <span>Site Visits: <b>16+ /month</b></span>
+                    <span>Outcome: <b>organic conversions</b></span>
+                </div>
+                <a href="CaseStudy/CS4.html">
+                <button class="btn-read-more">Read More</button></a>
+            </div>
+        </div>
+
+        <div class="card reveal fade-up delay-2">
+            <div class="card-image-wrapper">
+                <img src="image/case5.1.jpeg" alt="Logo">
+            </div>
+            <div class="card-content">
+                <span class="category">Performance & Growth Marketing</span>
+                <h2 class="title">Multi-Developer Revenue Growth Across MMR</h2>
+                <p class="description">A multi-creator content blitz that generated organic hype, social proof, and high-intent site visits for a large township launch.</p>
+                <div class="metrics">
+                    <span>Leads: <b>15,000+</b></span>
+                    <span>Impact: <b>₹100+ Cr</b></span>
+                </div>
+                <a href="CaseStudy/CS5.html">
+                <button class="btn-read-more">Read More</button></a>
+            </div>
+        </div>
+
+    </div>
+    </section>
+    <script>
+        // Optional JavaScript for interactive feedback
+        // Adds a 'clicked' effect or logs interactions for analytics
+        document.querySelectorAll('.card').forEach(card => {
+            card.addEventListener('click', (e) => {
+                // Prevent click trigger if button is handled separately
+                if(e.target.tagName !== 'BUTTON') {
+                    const title = card.querySelector('.title').innerText;
+                    console.log(`Navigating to case study: ${title}`);
+                }
+            });
+        });
+    </script>
+
+  
+        <!-- Footer Start -->
+
+        <section class="footer-section">
+            <div class="footer_marquee reveal fade-up">
+                <span class="footer_marquee__text">Digitics Digitics Digitics Digitics</span>
+            </div>
+
+            <div class="footer-left-content">
+                <div class="footer-logo-group">
+                    <img src="Images/digitics new logo.png" alt="skale logo" class="footer-logo">
+                </div>
+                <p class="footer-subtext reveal fade-up delay-1">
+                    Scale your business with ease.
+                </p>
+                <p class="footer-subtext reveal fade-up delay-1" style="margin-bottom: 40px;">
+                    Over 24+ startups trusted us and increased their revenue!
+                </p>
+                <a href="Contact.html" class="footer-btn reveal fade-up delay-2">
+                    Book a Strategy Call
+                </a>
+            </div>
+
+            <div class="footer-right-content">
+                <h3 class="footer-social-title reveal fade-up delay-1">
+                    Social Media
+                </h3>
+                <div class="footer-social-icons reveal fade-up delay-2">
+                <a href="https://wa.me/8591015489">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/WhatsApp_Logo_green.svg/640px-WhatsApp_Logo_green.svg.png" alt="WhatsApp" class="footer-social-icon">
+                </a>
+                <a href="https://www.instagram.com/digitics.ai/">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/1200px-Instagram_logo_2016.svg.png" alt="Instagram" class="footer-social-icon">
+                </a>
+                <a href="https://www.facebook.com/share/16iRDHzLKW/">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Facebook_Logo_%282019%29.png" alt="Facebook (formerly Twitter)" class="footer-social-icon">
+                </a>
+                <a href="https://www.linkedin.com/company/digitics-ai/">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/LinkedIn_icon_circle.svg/1200px-LinkedIn_icon_circle.svg.png" alt="LinkedIn" class="footer-social-icon">
+                </a>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Footer End -->
+
+        <!-- Extranal Javascript -->
+        <script src="JS/interact-landing.js"></script>
+        <script src="JS/box..js"></script>
+        <script src="JS/process-script.js"></script>
+        <script src="JS/review.js"></script>
+        <script src="JS/faq.js"></script>
+
+        <script>
+
+            // for animate on load
+
+            document.addEventListener("DOMContentLoaded", function () {
+                const elements = document.querySelectorAll(".animate-on-load");
+                elements.forEach((el, index) => {
+                    setTimeout(() => {
+                        el.classList.add("animate-start");
+                    }, index * 150);
+                });
+            });
+
+
+            // for reveal on scroll
+            document.addEventListener("DOMContentLoaded", () => {
+
+                const revealElements = document.querySelectorAll(".reveal");
+
+                const observer = new IntersectionObserver(
+                    (entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                entry.target.classList.add("reveal-visible");
+                                observer.unobserve(entry.target); // ensures it plays only once
+                            }
+                        });
+                    },
+                    {
+                        threshold: 0.15
+                    }
+                );
+
+                revealElements.forEach(el => observer.observe(el));
+            });
+
+
+        </script>
+
+    </body>
+
+</html>

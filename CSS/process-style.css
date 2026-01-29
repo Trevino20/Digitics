@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f9fb;
+            min-height: 200vh;
+        }
+        
+        /* Premium Shadow Style */
+        .card-shadow {
+            box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.1), 0 5px 15px -5px rgba(0, 0, 0, 0.04);
+            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s ease-out;
+            border-radius: 16px;
+        }
+        
+        /* Card Tilt: Subtle 3D tilt for static presentation */
+        .process-step-container[data-side="left"] .process-card {
+            transform: perspective(1000px) rotateX(1deg) rotateZ(-2deg);
+        }
+        .process-step-container[data-side="right"] .process-card {
+            transform: perspective(1000px) rotateX(1deg) rotateZ(2deg);
+        }
+
+        /* Hover Effect: Straighten, scale, and float */
+        .card-shadow:hover {
+            transform: scale(1.02) translateY(-5px) rotateZ(0deg);
+            box-shadow: 0 25px 50px -10px rgba(0, 0, 0, 0.15), 0 10px 20px -10px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Accent Colors & Gradients for Visual Flair */
+        .accent-orange { color: #ff6a00; }
+        .accent-blue { color: #3b82f6; }
+        .accent-purple { color: #a855f7; }
+        .accent-green { color: #10b981; }
+        .accent-pink { color: #f472b6; }
+        .accent-yellow { color: #facc15; }
+
+        .bg-grad-orange { background: linear-gradient(135deg, #ffedd5 0%, #fed7aa 100%); } 
+        .bg-grad-blue { background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%); } 
+        .bg-grad-purple { background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%); } 
+        .bg-grad-green { background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%); } 
+        .bg-grad-pink { background: linear-gradient(135deg, #fce7f6 0%, #fbcfe8 100%); } 
+        .bg-grad-yellow { background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); } 
+
+        .inner-gradient-box {
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            height: 90%;
+        }
+
+        /* Canvas setup for the connector line */
+        #connector-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            /* Send canvas behind everything, except the wrapper (which is relative/z-20) */
+            z-index: 10; 
+        }
+
+        .pin-shadow {
+            filter: drop-shadow(0 6px 6px rgba(0, 0, 0, 0.3));
+        }
+
+        /* Desktop-specific (lg: breakpoint in Tailwind) layout for zig-zag */
+        @media (min-width: 1024px) {
+            .process-wrapper {
+                /* Confine cards to the middle area */
+                width: 40%; 
+                margin: 0 auto;
+                max-width: 40rem; 
+            }
+            /* Repositioning cards back over the central line for the zig-zag effect */
+            /* Crucial: These margins create the zig-zag effect on desktop */
+            .process-step-container[data-side="left"] > div {
+                margin-left: -50%;
+                z-index: 20; 
+            }
+            .process-step-container[data-side="right"] > div {
+                margin-right: -50%;
+                z-index: 20;
+            }
+        }
+        
+        /* Mobile Specific Styles: Ensure full width and vertical alignment */
+        @media (max-width: 1023px) {
+            /* Ensure the cards take up the full width minus padding for mobile, 
+               and alignment is consistent for the straight line down the center. */
+            .process-step-container {
+                justify-content: center !important; /* Force cards to center in mobile */
+            }
+            .process-step-container > div {
+                width: 90% !important; /* Use a slightly wider container for mobile */
+                max-width: 24rem; /* Max-width for mobile card */
+            }
+        }
