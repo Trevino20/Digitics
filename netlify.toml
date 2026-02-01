@@ -1,5 +1,0 @@
-  [[plugins]]
-  package = "netlify-plugin-one"
-
-    [plugins.inputs]
-cloudName = "dygbzit8r"
