@@ -103,29 +103,34 @@
     <h3 class="box-title">Share Article</h3>
 
     <div class="footer-social-icons">
-
         <!-- WhatsApp Share -->
-        <a href="https://api.whatsapp.com/send?text=Check%20out%20this%20article:%20<?php echo urlencode(get_permalink()); ?>"
+        <a href="https://api.whatsapp.com/send?text=Check%20out%20this%20article:%20https://digitics.co.in/casestudy/cs1"
            target="_blank">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
-                 alt="Share on WhatsApp"
-                 class="footer-social-icon">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/WhatsApp_Logo_green.svg/640px-WhatsApp_Logo_green.svg.png" alt="WhatsApp" class="footer-social-icon">
         </a>
 
         <!-- Facebook Share -->
-        <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo urlencode(get_permalink()); ?>"
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https://digitics.co.in/casestudy/cs1"
            target="_blank">
             <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Facebook_Logo_%282019%29.png"
                  alt="Share on Facebook"
                  class="footer-social-icon">
         </a>
 
-        <!-- Instagram (Copy Link) -->
+       <!-- Instagram (Copy Link) -->
         <a href="javascript:void(0)" onclick="copyArticleLink()">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg"
-                 alt="Copy link for Instagram"
-                 class="footer-social-icon">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg"
+         alt="Copy link for Instagram"
+         class="footer-social-icon">
         </a>
+
+        <script>
+            function copyArticleLink() {
+            const url = "https://digitics.co.in/casestudy/cs1";
+            navigator.clipboard.writeText(url);
+            alert("Link copied! Paste it in Instagram bio or DM.");
+        }
+        </script>
 
     </div>
 </div>
@@ -162,7 +167,7 @@
                     Social Media
                 </h3>
                 <div class="footer-social-icons reveal fade-up delay-2">
-                <a href="https://wa.me/8591015489">
+                <a href="https://wa.me/+918591015489">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/WhatsApp_Logo_green.svg/640px-WhatsApp_Logo_green.svg.png" alt="WhatsApp" class="footer-social-icon">
                 </a>
                 <a href="https://www.instagram.com/digitics.ai/">
