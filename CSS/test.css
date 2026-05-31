@@ -1,0 +1,646 @@
+/* =========================================================
+   PREMIUM LUXURY GOLD PRICING SECTION
+   Brand Color: #fcd739
+========================================================= */
+
+:root {
+
+    /* --- Luxury Gold Palette --- */
+    --gold-main: #fcd739;
+    --gold-rich: #f5c400;
+    --gold-dark: #d9a900;
+    --gold-soft: #fff3c4;
+    --gold-light: #fffbea;
+
+    --navy-dark: #0f172a;
+    --navy-card: #1e293b;
+    --navy-hover: #334155;
+
+    --text-dark: #111827;
+    --text-gray: #64748b;
+
+    --white: #ffffff;
+
+    /* --- Premium Shadows --- */
+    --shadow-soft:
+        0 20px 40px rgba(15, 23, 42, 0.08);
+
+    --shadow-gold:
+        0 12px 28px rgba(252, 215, 57, 0.28);
+
+    --shadow-hover:
+        0 25px 50px rgba(252, 215, 57, 0.35);
+
+    --border-radius-card: 28px;
+}
+
+/* --- Body --- */
+body {
+    margin: 0;
+
+    font-family:
+        'Inter',
+        'Helvetica Neue',
+        Arial,
+        sans-serif;
+
+    background:
+        linear-gradient(
+            180deg,
+            #fffef5,
+            #fffbea
+        );
+}
+
+/* --- Container --- */
+.price-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* =========================================================
+   SECTION
+========================================================= */
+
+.price-section {
+
+    background:
+
+        radial-gradient(
+            circle at top,
+            #ffe27a 0%,
+            #fcd739 35%,
+            #f5c400 65%,
+            #d9a900 100%
+        );
+
+    padding: 60px 0;
+
+    text-align: center;
+
+    border-radius: 90px;
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+/* --- Luxury Background Glow --- */
+.price-section::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 700px;
+    height: 700px;
+
+    background:
+        radial-gradient(
+            rgba(255,255,255,0.18),
+            transparent 70%
+        );
+
+    top: -300px;
+    left: -150px;
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.price-header {
+    color: var(--white);
+    margin-bottom: 70px;
+    position: relative;
+    z-index: 2;
+}
+
+/* --- Top Pill --- */
+.price-top-label-pill {
+
+    display: inline-block;
+
+    font-size: 1rem;
+
+    font-weight: 700;
+
+    margin-bottom: 35px;
+
+    padding: 12px 24px;
+
+    background:
+        rgba(255,255,255,0.16);
+
+    color: var(--white);
+
+    border-radius: 50px;
+
+    backdrop-filter: blur(14px);
+
+    border:
+        1px solid rgba(255,255,255,0.22);
+
+    box-shadow:
+        0 8px 25px rgba(255,255,255,0.12);
+
+    letter-spacing: 1px;
+}
+
+/* --- Main Heading --- */
+.price-header h1 {
+
+    font-size: 6rem;
+
+    font-weight: 900;
+
+    line-height: 1.05;
+
+    margin-top: 0;
+    margin-bottom: 45px;
+
+    letter-spacing: -3px;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(255,255,255,1),
+            rgba(255,255,255,0.72)
+        );
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* =========================================================
+   CTA SECTION
+========================================================= */
+
+.price-cta-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* --- Premium CTA Button --- */
+.price-btn-primary-header {
+
+    display: inline-flex;
+    align-items: center;
+
+    padding: 16px 38px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #ffffff,
+            #fff9dd
+        );
+
+    color: var(--text-dark);
+
+    text-decoration: none;
+
+    font-weight: 700;
+
+    border-radius: 24px;
+
+    border:
+        1px solid rgba(255,255,255,0.4);
+
+    box-shadow:
+        0 12px 30px rgba(15,23,42,0.15),
+        inset 0 1px 1px rgba(255,255,255,0.6);
+
+    transition: all 0.35s ease;
+
+    position: relative;
+
+    overflow: hidden;
+
+    font-size: 1.1rem;
+}
+
+/* --- Shine Effect --- */
+.price-btn-primary-header::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: -100%;
+
+    width: 50%;
+    height: 100%;
+
+    background:
+        linear-gradient(
+            120deg,
+            transparent,
+            rgba(255,255,255,0.8),
+            transparent
+        );
+
+    transform: skewX(-25deg);
+
+    animation: luxuryShine 3s infinite;
+}
+
+@keyframes luxuryShine {
+
+    0% {
+        left: -100%;
+    }
+
+    100% {
+        left: 140%;
+    }
+}
+
+.price-btn-primary-header:hover {
+
+    transform:
+        translateY(-4px)
+        scale(1.03);
+
+    box-shadow:
+        var(--shadow-hover);
+}
+
+/* --- Avatar --- */
+.price-avatar {
+
+    width: 34px;
+    height: 34px;
+
+    border-radius: 50%;
+
+    margin-right: 12px;
+
+    border: 2px solid rgba(255,255,255,0.7);
+
+    object-fit: cover;
+}
+
+/* --- Social Links --- */
+.price-social-links {
+
+    font-size: 1rem;
+
+    opacity: 0.95;
+
+    margin-top: 22px;
+}
+
+.price-social-links a {
+
+    color: rgba(255,255,255,0.92);
+
+    text-decoration: none;
+
+    border-bottom:
+        1px solid rgba(255,255,255,0.4);
+
+    transition: all 0.3s ease;
+}
+
+.price-social-links a:hover {
+    color: #fff;
+}
+
+/* =========================================================
+   PRICING CARDS
+========================================================= */
+
+.price-cards {
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 40px;
+
+    position: relative;
+
+    z-index: 2;
+
+    padding-bottom: 40px;
+}
+
+/* --- Luxury Card --- */
+.price-card {
+
+    background:
+        rgba(255,255,255,0.88);
+
+    backdrop-filter: blur(14px);
+
+    border-radius:
+        var(--border-radius-card);
+
+    border:
+        1px solid rgba(255,255,255,0.45);
+
+    box-shadow:
+        var(--shadow-soft),
+        var(--shadow-gold);
+
+    width: 70%;
+    max-width: 820px;
+
+    padding: 42px;
+
+    text-align: left;
+
+    position: relative;
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 35px;
+
+    transition: all 0.4s ease;
+}
+
+.price-card:hover {
+
+    transform:
+        translateY(-10px);
+
+    box-shadow:
+        0 30px 60px rgba(15,23,42,0.12),
+        0 20px 50px rgba(252,215,57,0.35);
+}
+
+/* --- Ribbon --- */
+.price-ribbon-badge {
+
+    position: absolute;
+
+    top: -26px;
+    right: 50%;
+
+    transform: translateX(50%);
+
+    width: 180px;
+    height: 90px;
+
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* =========================================================
+   LEFT CONTENT
+========================================================= */
+
+.price-card-content {
+
+    padding-right: 40px;
+
+    border-right:
+        1px solid rgba(252,215,57,0.18);
+}
+
+/* --- Service Title --- */
+.price-service-title {
+
+    font-size: 1.6rem;
+
+    font-weight: 700;
+
+    margin-top: 0;
+
+    color: var(--text-dark);
+}
+
+/* --- Pricing --- */
+.price-value {
+
+    font-size: 4rem;
+
+    font-weight: 900;
+
+    margin: 10px 0;
+
+    color: var(--navy-dark);
+
+    letter-spacing: -2px;
+}
+
+/* --- Description --- */
+.price-description {
+
+    color: var(--text-gray);
+
+    font-size: 1rem;
+
+    line-height: 1.7;
+
+    margin-bottom: 35px;
+}
+
+/* =========================================================
+   FEATURES
+========================================================= */
+
+.price-features {
+
+    list-style: none;
+
+    padding: 0;
+
+    margin-top: 15px;
+}
+
+.price-features li {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    margin-bottom: 22px;
+
+    font-size: 1rem;
+
+    color: var(--text-gray);
+
+    line-height: 1.6;
+}
+
+/* --- Gold Dot --- */
+.price-features .price-icon {
+
+    display: inline-block;
+
+    width: 12px;
+    height: 12px;
+
+    min-width: 12px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #fcd739,
+            #d9a900
+        );
+
+    border-radius: 50%;
+
+    margin-right: 12px;
+
+    margin-top: 7px;
+
+    box-shadow:
+        0 0 10px rgba(252,215,57,0.5);
+}
+
+/* =========================================================
+   SECONDARY BUTTON
+========================================================= */
+
+.price-btn-secondary {
+
+    display: block;
+
+    width: 75%;
+
+    padding: 16px 22px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #0f172a,
+            #1e293b
+        );
+
+    color: var(--white);
+
+    text-align: center;
+
+    text-decoration: none;
+
+    font-weight: 700;
+
+    border-radius: 22px;
+
+    border:
+        1px solid rgba(252,215,57,0.15);
+
+    box-shadow:
+        0 10px 24px rgba(15,23,42,0.22);
+
+    transition: all 0.35s ease;
+}
+
+.price-btn-secondary:hover {
+
+    transform:
+        translateY(-3px);
+
+    background:
+        linear-gradient(
+            180deg,
+            #1e293b,
+            #334155
+        );
+
+    box-shadow:
+        0 18px 35px rgba(15,23,42,0.28);
+}
+
+/* --- Spots Text --- */
+.price-spots-available {
+
+    text-align: left;
+
+    font-size: 0.9rem;
+
+    color: var(--text-gray);
+
+    margin-top: 16px;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 992px) {
+
+    .price-header h1 {
+        font-size: 4rem;
+    }
+
+    .price-card {
+
+        width: 80%;
+
+        grid-template-columns: 1fr;
+
+        padding: 32px;
+    }
+
+    .price-card-content {
+
+        border-right: none;
+
+        padding-right: 0;
+
+        padding-bottom: 24px;
+
+        border-bottom:
+            1px solid rgba(252,215,57,0.18);
+    }
+}
+
+@media (max-width: 768px) {
+
+    .price-section {
+        border-radius: 50px;
+    }
+
+    .price-header h1 {
+        font-size: 2.8rem;
+    }
+
+    .price-card {
+
+        width: 90%;
+
+        padding: 24px;
+    }
+
+    .price-btn-secondary {
+        width: 100%;
+    }
+}
+
+@media (max-width: 576px) {
+
+    .price-header h1 {
+        font-size: 2.2rem;
+    }
+
+    .price-btn-primary-header {
+
+        padding: 14px 28px;
+
+        font-size: 1rem;
+    }
+
+    .price-top-label-pill {
+        font-size: 0.85rem;
+    }
+
+    .price-ribbon-badge {
+
+        width: 140px;
+        height: 80px;
+
+        top: -12px;
+    }
+}

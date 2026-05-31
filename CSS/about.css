@@ -23,7 +23,7 @@
   position: absolute;
   left: -40px;
   top: 0;
-  background: #420172;
+  background: #d9a900;
   color: #eddefa;
   padding: 20px 10px;
   font-weight: bold;
@@ -60,7 +60,7 @@
 
 .about-highlight {
   font-family: 'Inter', sans-serif;
-  color: #64009e;
+  color: #c5a102;
   font-weight: 700;
   text-transform: capitalize;
   margin-bottom: 20px;
@@ -76,7 +76,7 @@
 
 .about-button {
   display: inline-block;
-  background-image: linear-gradient(135deg, #971fff, #64009e);
+  background-image: linear-gradient(135deg, #fcd739, #9e8c00);
   color: #fcf9ff;
   padding: 14px 32px;
   text-decoration: none;
@@ -86,7 +86,7 @@
 }
 
 .about-button:hover {
-  background: #a410b2;
+  background: #a7b210;
   box-shadow: #350162 0px 8px 15px rgba(108, 1, 141, 0.4);
 }
 

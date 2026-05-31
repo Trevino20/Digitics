@@ -77,7 +77,7 @@
         }
 
         .nav-links a:hover {
-            color: #7b0cea;
+            color: #f5c400;
         }
 
         .header-button {
@@ -128,7 +128,7 @@
             width: 1rem;
             height: 1rem;
             fill: currentColor;
-            color: #990cea;
+            color: #f5c400;
         }
 
         /* Hero Section */
@@ -186,7 +186,7 @@
 
         .pill-badge .highlight {
             font-weight: 700;
-            color: #a40cea;
+            color: #fcd739;
         }
 
         .hero-heading {
@@ -219,9 +219,9 @@
 
         .btn-gradient-orange {
             /* background-image: linear-gradient(to right, #ff6a00 0%, #ff3c00 100%); */
-            background: linear-gradient(90deg, #FF69B4, #8C40F6);
+            background: linear-gradient(90deg, #ffd104, #e49114);
             transition: all 0.3s ease;
-            box-shadow: 0 10px 20px -5px rgba(128, 50, 238, 0.5);
+            box-shadow: 0 10px 20px -5px rgba(255, 103, 2, 0.5);
             color: white;
             font-size: 1.125rem;
             font-weight: 700;
@@ -235,7 +235,7 @@
 
         .btn-gradient-orange:hover {
             transform: scale(1.03);
-            box-shadow: 0 15px 30px -5px rgba(245, 84, 226, 0.7);
+            box-shadow: 0 15px 30px -5px rgba(245, 157, 84, 0.7);
         }
 
 

@@ -1,14 +1,14 @@
 /* Basic Reset and Variables (Optional, but good practice) */
 :root {
-    --color-orange-start: #9c5fff;
+    --color-orange-start: #fcd739;
     /* Lighter Orange */
-    --color-orange-end: #b47bfe;
+    --color-orange-end: #f5c400;
     /* Darker Orange/Peach */
     --color-text-dark: #333;
     --color-text-gray: #666;
     --color-white: #ffffff;
     --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.1);
-    --shadow-orange: 0 5px 15px rgba(156, 95, 255, 0.5);
+    --shadow-orange:  0 12px 28px rgba(252, 215, 57, 0.28);
     --border-radius-card: 20px;
 }
 
@@ -27,7 +27,7 @@ body {
 
 /* --- Section Styling --- */
 .price-section {
-    background: radial-gradient(62.4157% 80.1102% at 52.5481% 31.5073%, #9f55ff 5.53999%, #aa3bff 48.1982%, #6d01d1 78.5094%);
+    background: radial-gradient(62.4157% 80.1102% at 52.5481% 31.5073%, #fcd739 5.53999%, #f5c400 48.1982%, #d9a900 78.5094%);
     padding: 40px 0;
     text-align: center;
     border-radius: 95px 95px 80px 80px;
@@ -68,7 +68,7 @@ body {
     margin-top: 0;
     margin-bottom: 50px;
     /* Increased margin below heading */
-    background-image: radial-gradient(43% 228.29700000000003% at 50% 60.6452%, rgb(255, 255, 255) 0%, rgba(255, 255, 255, 0.6) 100%);
+    background-image: radial-gradient(43% 228.29700000000003% at 50% 60.6452%, rgb(254, 251, 251) 0%, rgba(255, 255, 255, 0.6) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 
@@ -111,7 +111,7 @@ body {
     /* Increase padding on the left to allow space for the new avatar */
     padding-right: 45px;
     /* Keep right padding the same */
-    box-shadow: 0 8px 25px rgba(81, 1, 173, 0.911);
+    box-shadow: 0 8px 25px rgba(248, 240, 20, 0.911);
     /* Enhance shadow on hover */
     transform: none;
     /* Removed previous translateY(-2px) pop-up */
@@ -259,7 +259,7 @@ body {
     height: 10px;
     min-width: 10px;
     /* Prevent shrinking */
-    background-color: #8442ff;
+    background: linear-gradient(135deg, #fcd739, #d9a900);
     /* Orange dot */
     border-radius: 50%;
     margin-right: 10px;
@@ -272,20 +272,20 @@ body {
     display: block;
     width: 70%;
     padding: 15px 20px;
-    background-color: #ac0df5;
+    background: linear-gradient(135deg, #0f172a, #1e293b);
     color: var(--color-white);
     text-align: center;
     text-decoration: none;
     font-weight: 600;
     border-radius: 20px;
-    box-shadow: 0 5px 15px rgba(161, 66, 255, 0.5);
+    box-shadow: 0 5px 15px rgba(252,215,57,0.15);
     transition: background-color 0.2s, box-shadow 0.2s;
 }
 
 .price-btn-secondary:hover {
-    background-color: #de49ff;
-    border-color: #a938ff;
-    box-shadow: 0 5px 10px rgba(151, 66, 255, 0.4);
+    background-color: #ffad49;
+    border-color: #ff9838;
+    box-shadow: 0 5px 10px rgba(255, 129, 66, 0.4);
 }
 
 .price-spots-available {

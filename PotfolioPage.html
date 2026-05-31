@@ -10,12 +10,12 @@
     <style>
         /* --- Variables & Global Reset --- */
 :root {
-    --color-primary: #8C40F6; /* A vibrant purple for highlights */
-    --color-accent: #20C997; /* A teal/green for contrast */
-    --color-text-light: #F0F0F0;
-    --color-text-medium: #AAAAAA;
-    --color-background-dark: #0A0A10;
-    --color-card-bg-raw: 255, 255, 255; /* Raw RGB for glassmorphism */
+    --color-primary: #fcd739;      /* Brand Gold */
+    --color-accent: #d9a900;       /* Deep Luxury Gold */
+    --color-text-light: #F8F8F8;
+    --color-text-medium: #B8B8B8;
+    --color-background-dark: #0B0B0B; /* Premium Black */
+    --color-card-bg-raw: 255, 255, 255;
     --color-card-bg: rgba(var(--color-card-bg-raw), 0.05);
     --blur-strength: 12px;
     --border-radius-large: 24px;
@@ -84,11 +84,11 @@ a:hover {
 }
 
 /* Define the base colors and sizes of the gradients */
-.g1 { background: radial-gradient(circle, rgba(140, 64, 246, 0.5), transparent); width: 600px; height: 600px; top: 10%; left: 10%; }
-.g2 { background: radial-gradient(circle, rgba(32, 201, 151, 0.5), transparent); width: 800px; height: 800px; bottom: 5%; right: 15%; }
-.g3 { background: radial-gradient(circle, rgba(255, 105, 180, 0.5), transparent); width: 500px; height: 500px; top: 50%; left: 50%; transform: translate(-50%, -50%); }
-.g4 { background: radial-gradient(circle, rgba(255, 223, 0, 0.4), transparent); width: 700px; height: 700px; top: 0; right: 0; }
-.g5 { background: radial-gradient(circle, rgba(64, 184, 246, 0.4), transparent); width: 400px; height: 400px; bottom: 0; left: 0; }
+.g1 { background: radial-gradient(circle, rgba(252,215,57,0.45), transparent); width: 600px; height: 600px; top: 10%; left: 10%; }
+.g2 { background: radial-gradient(circle, rgba(217,169,0,0.35), transparent); width: 800px; height: 800px; bottom: 5%; right: 15%; }
+.g3 { background: radial-gradient(circle, rgba(255,230,120,0.30), transparent); width: 500px; height: 500px; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+.g4 { background: radial-gradient(circle, rgba(252,215,57,0.25), transparent); width: 700px; height: 700px; top: 0; right: 0; }
+.g5 { background: radial-gradient(circle, rgba(184,134,11,0.25), transparent); width: 400px; height: 400px; bottom: 0; left: 0; }
 
 /* --- Navigation & Header --- */
 .header {
@@ -137,7 +137,7 @@ nav a {
     border-radius: 50%;
     /* Subtle glowing ring effect around image */
     background: linear-gradient(45deg, var(--color-primary), var(--color-accent));
-    box-shadow: 0 0 15px rgba(140, 64, 246, 0.5);
+    box-shadow: 0 0 25px rgba(252,215,57,0.55);
 }
 
 .profile-image {
@@ -198,12 +198,12 @@ nav a {
 .btn-primary {
     background: var(--color-primary);
     color: var(--color-text-light);
-    box-shadow: 0 5px 20px rgba(140, 64, 246, 0.4);
+    box-shadow: 0 5px 20px rgba(252,215,57, 0.4);
 }
 
 .btn-primary:hover {
     transform: translateY(-3px);
-    box-shadow: 0 8px 30px rgba(140, 64, 246, 0.6);
+    box-shadow: 0 8px 30px rgba(252,215,57, 0.6);
 }
 
 .btn-secondary {
@@ -280,7 +280,7 @@ section {
 }
 
 .project-card:hover {
-    box-shadow: 0 15px 50px rgba(140, 64, 246, 0.2);
+    box-shadow: 0 15px 50px rgba(252,215,57, 0.2);
     transform: translateY(-5px);
 }
 
@@ -447,7 +447,7 @@ section {
     color: var(--color-background-dark);
     font-weight: 600;
     transform: translateY(-2px);
-    box-shadow: 0 5px 20px rgba(140, 64, 246, 0.2);
+    box-shadow: 0 5px 20px rgba(252,215,57, 0.2);
 }
 
 .skill-tag:hover::before {
@@ -522,12 +522,12 @@ section {
     border: none;
     color: var(--color-background-dark);
     font-weight: 700;
-    box-shadow: 0 10px 40px rgba(140, 64, 246, 0.6);
+    box-shadow: 0 10px 40px rgba(252,215,57, 0.6);
 }
 
 .btn-cta:hover {
     transform: translateY(-5px) scale(1.02);
-    box-shadow: 0 15px 50px rgba(140, 64, 246, 0.8);
+    box-shadow: 0 15px 50px rgba(252,215,57, 0.8);
 }
 
 .credits-footer {
@@ -713,7 +713,7 @@ html { scroll-behavior: smooth; }
             height:2em;
             max-width:180px;
          ">
-        <img src="Images/DIGITICS logo ( WHITE).png"
+        <img src="Images/Digitics white logo.png"
              alt="Digitics Logo"
              style="
                 width:100%;

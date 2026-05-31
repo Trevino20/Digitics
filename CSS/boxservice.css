@@ -34,44 +34,77 @@
             flex: 1;
             min-width: 280px;
             max-width: 350px;
-            background-color: #fff;
-            border-radius: 45px;
-            padding: 0.4rem;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(255, 255, 255, 0.5) inset;
-            text-align: center;
-            border: 1px solid #eee;
-            box-shadow: 0 15px 30px rgba(202, 176, 244, 0.5), inset 0 5px 10px rgba(255, 255, 255, 0.5);
-        }
+            
+    background: rgba(255, 255, 255, 0.88);
 
+    backdrop-filter: blur(14px);
+
+    border-radius: 45px;
+    padding: 0.4rem;
+
+    border: 1px solid rgba(252, 215, 57, 0.25);
+
+    box-shadow:
+        0 25px 45px rgba(15, 23, 42, 0.08),
+        0 10px 30px rgba(252, 215, 57, 0.18),
+        inset 0 1px 1px rgba(255, 255, 255, 0.7);
+
+    text-align: center;
+
+    transition: all 0.35s ease;
+        }
+        .serivce-card:hover {
+    transform: translateY(-8px);
+
+    box-shadow:
+        0 35px 60px rgba(15, 23, 42, 0.12),
+        0 15px 40px rgba(252, 215, 57, 0.28);
+}
+.serivce-card:hover {
+    transform: translateY(-8px);
+
+    box-shadow:
+        0 35px 60px rgba(15, 23, 42, 0.12),
+        0 15px 40px rgba(252, 215, 57, 0.28);
+}
         .serivce-card h3 {
-            font-size: 1.1rem;
-            font-weight: 700;
-            margin-top: 0.5rem;
-            margin-bottom: 1rem;
+            font-size: 1.15rem;
+    font-weight: 800;
+    margin-top: 0.8rem;
+    margin-bottom: 1rem;
+    color: #0f172a;
         }
 
         .serivce-card p {
             text-align: justify;
             font-size: 0.7rem;
-            color: #777;
+            color: #64748b;
             padding: 0px 25px 22px 25px;
-            line-height: 1.5;
+            line-height: 1.7;
             margin: 0;
         }
 
         /* Card Visuals Container (Kept the same) */
         .card-visual {
-               background: repeating-linear-gradient(
-                135deg,
-                #dfb8f6,
-                #dfb8f6 10px,
-                #dfb8f6 10px,
-                #dfb8f6 20px
-            );
+               background:
+        repeating-linear-gradient(
+            135deg,
+            rgba(252, 215, 57, 0.08),
+            rgba(252, 215, 57, 0.08) 12px,
+            rgba(255, 255, 255, 0.08) 12px,
+            rgba(255, 255, 255, 0.08) 24px
+        ),
+
+        linear-gradient(
+            135deg,
+            #fff8d6,
+            #fff3b0
+        );
             height: 200px; /* Defines the size of the top half */
             display: flex;
             align-items: center;
             justify-content: center;}
+            
            /* --- height: 180px;
             border-radius: 15px;
             margin-bottom: 1.5rem;
@@ -87,16 +120,21 @@
         .visual-funding {
             border-top-left-radius: 43px;
             border-top-right-radius: 43px;
-            background: linear-gradient(145deg, #fbf0ff, #d5a8ea);
+            background: linear-gradient(145deg, #fffef5, #fff3c4);
         }
 
         .toggle-container {
             display: flex;
             align-items: center;
-            background-color: #fff;
+            background-color: rgba(255,255,255,0.85);
+            backdrop-filter: blur(10px);
             padding: 10px 25px;
             border-radius: 40px;
-            box-shadow: 0 10px 30px rgba(238, 175, 255, 0.2);
+             border: 1px solid rgba(252, 215, 57, 0.3);
+
+    box-shadow:
+        0 10px 25px rgba(252, 215, 57, 0.18),
+        inset 0 1px 2px rgba(255,255,255,0.6);
             cursor: pointer; /* Indicate it's clickable */
             user-select: none; /* Prevent text selection */
         }
@@ -104,7 +142,7 @@
         .toggle-text {
             font-weight: 700;
             font-size: 1.2rem;
-            color: #7b2cbf;
+            color: #c89b00;
             margin-right: 15px;
             white-space: nowrap;
         }
@@ -118,13 +156,13 @@
             transition: background-color 0.3s;
             box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.3), 0 5px 15px rgba(225, 202, 236, 0.5);
             /* Initial OFF state: Lighter grey/orange */
-            background: linear-gradient(145deg, #e0e0e0, #cccccc);
+            background: linear-gradient(145deg, #d6d6d6, #b8b8b8);
         }
         
         /* State when switch is ON (Added via JS class 'active') */
         .toggle-switch.active {
-            background: linear-gradient(145deg, #b784e3, #7b2cbf);
-            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.3), 0 5px 15px rgba(106, 0, 255, 0.5);
+            background: linear-gradient(145deg, #fcd739, #e5b700);
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.3), 0 5px 15px rgba(252, 215, 57, 0.45);
         }
 
         .toggle-knob {
@@ -137,7 +175,7 @@
             /* Initial OFF state: Left side */
             left: 2.5px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2), inset 0 0 2px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s;
+            transition: transform 0.3s ease;
         }
 
         /* State when switch is ON (Knob is moved to the right) */
@@ -150,10 +188,14 @@
         .visual-conversions {
             border-top-left-radius: 43px;
             border-top-right-radius: 43px;
-            /* background:url('https://framerusercontent.com/images/IeeYtvtpg3idtuPwzhKuSTgZeQ.png?scale-down-to=512') ; */
-            /* background-size: cover; */
-            background: linear-gradient(90deg, #FF69B4, #8C40F6);
-            /* background: linear-gradient(145deg, #ffc78d, #ff904f); */
+            
+            background:
+        linear-gradient(
+            135deg,
+            #fcd739 0%,
+            #f5c400 35%,
+            #d9a900 100%
+        );
             position: relative;
         }
 
@@ -168,28 +210,53 @@
             justify-content: center;
             color: #fff;
             font-weight: 800;
+             background:
+        linear-gradient(
+            145deg,
+            #0f172a,
+            #1e293b
+        );
+
+    border-radius: 70%;
+    box-shadow:
+        0 20px 35px rgba(15, 23, 42, 0.35),
+        inset 0 2px 12px rgba(255,255,255,0.08);
+
+    border: 3px solid rgba(255,255,255,0.12);
             /* box-shadow: 0 15px 30px rgba(255, 85, 0, 0.5), inset 0 5px 10px rgba(255, 255, 255, 0.5); */
             position: relative;
         }
+        .conversion-circle::before {
+    content: "";
+    position: absolute;
+    inset: -8px;
+
+    border-radius: 50%;
+
+    border: 2px solid rgba(255,255,255,0.18);
+}
 --- */
+
         .conversion-circle .percent {
             font-size: 3rem;
             line-height: 1;
+            
         }
 
         .conversion-circle .label {
             font-size: 0.9rem;
             font-weight: 600;
-            background-color: rgba(255, 255, 255, 0.2);
+            background-color: rgba(255, 255, 255, 0.1);
             padding: 2px 10px;
             border-radius: 10px;
             margin-top: 5px;
+            backdrop-filter: blur(8px);
         }
 
         .visual-market {
              border-top-left-radius: 43px;
             border-top-right-radius: 43px;
-            background: linear-gradient(145deg, #fcebff, #f9d4ff);
+            background: linear-gradient(145deg, #fffdf2, #fff3c4);
             
             flex-direction: column;
             justify-content: center;
@@ -197,7 +264,7 @@
 
         .stats-label {
             font-size: 0.8rem;
-            color: #ff5500;
+            color: #c89b00;
             font-weight: 600;
             margin-bottom: 1rem;
         }
@@ -211,14 +278,16 @@
             font-size: 0.9rem;
             font-weight: 600;
             color: #fff;
-            background: linear-gradient(90deg, #e18bf0, #8a30bb);
-            box-shadow: 0 5px 15px rgba(123, 0, 255, 0.3), inset 0 0 10px rgba(255, 255, 255, 0.3);
-            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+            background: linear-gradient(90deg, #111827, #1e293b);
+            box-shadow: 0 5px 15px rgba(15,23,42,0.18), inset 0 0 10px rgba(255, 255, 255, 0.06);
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+            transition: all 0.3s ease;
         }
 
         .stat-pill strong {
             font-weight: 800;
             margin-left: 5px;
+            color: #fcd739;
         }
 
         /* --- Responsiveness (Kept the same) --- */
@@ -281,8 +350,8 @@
                 font-size: 1rem;
             }
             .conversion-circle {
-                width: 120px;
-                height: 120px;
+                width: 180px;
+                height: 180px;
             }
             .conversion-circle .percent {
                 font-size: 2.5rem;
@@ -291,19 +360,40 @@
         /* Base button style */
 .conversion-btn {
   position: relative;
-  display: inline-block;
-  padding: 12px 34px;
-  font-size: 16px;
-  font-weight: 600;
-  color: #fff;
-  background: linear-gradient(180deg, #c247ff, #b300ff);
-  border: none;
-  border-radius: 50px;
-  box-shadow: 0 4px 10px rgba(149, 0, 255, 0.4),
-              inset 0 2px 4px rgba(255, 255, 255, 0.5);
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-  cursor: pointer;
-  overflow: hidden;
+
+    display: inline-block;
+
+    padding: 14px 38px;
+
+    font-size: 16px;
+    font-weight: 700;
+
+    color: #111827;
+
+    background:
+        linear-gradient(
+            180deg,
+            #ffe27a,
+            #fcd739,
+            #eab308
+        );
+
+    border: none;
+
+    border-radius: 50px;
+
+    box-shadow:
+        0 12px 24px rgba(252,215,57,0.35),
+        inset 0 2px 5px rgba(255,255,255,0.45);
+
+    text-shadow:
+        0 1px 1px rgba(255,255,255,0.4);
+
+    cursor: pointer;
+
+    overflow: hidden;
+
+    transition: all 0.35s ease;
 }
 
 /* Shine animation overlay */
@@ -343,8 +433,9 @@
 /* Hover/active interaction */
 .conversion-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 14px rgba(242, 0, 255, 0.6),
-              inset 0 2px 4px rgba(255, 255, 255, 0.6);
+   box-shadow:
+        0 18px 35px rgba(252,215,57,0.45),
+        inset 0 2px 5px rgba(255,255,255,0.55);
 }
 
 .conversion-btn:active {
